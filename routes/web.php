@@ -11,15 +11,15 @@
 |
 */
 
-//Route::get('/admin','PagesController@login');
+Route::get('/','PagesController@welcome');
 
+Route::match(['get','post'],'/inicio','PagesController@login');
 Route::get('registro','PagesController@registro')->name('registro');
 Route::get('dashboard','PagesController@dashboard')->name('dashboard');
 Route::get('profile','PagesController@profile')->name('profile');
 Route::get('tables','PagesController@tables')->name('tables');
 Route::get('icons','PagesController@icons')->name('icons');
 Route::get('formulario','PagesController@formulario')->name('formulario');
-Route::match(['get','post'],'/inicio','PagesController@login');
 
 Auth::routes();
 

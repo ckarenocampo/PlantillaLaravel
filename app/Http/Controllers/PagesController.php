@@ -38,4 +38,7 @@ class PagesController extends Controller
     public function formulario(){
         return view('/formulario');
     }
+    public function welcome(){
+        return view('/welcome');
+    }
 }
