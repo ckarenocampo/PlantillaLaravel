@@ -3,7 +3,6 @@
 <!-- Header -->
 @include('admin_header')
 <body>
-
   <!-- Sidenav -->
   @include('admin_sidenav')
     <!-- Main content -->

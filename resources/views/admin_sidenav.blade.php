@@ -44,8 +44,15 @@
                 <span class="nav-link-text">Formulario ejemplo</span>
               </a>
             </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('formulario') }}">
+                  <i class="ni ni-circle-08 text-pink"></i>
+                  <span class="nav-link-text">CRUD EJEMPLO</span>
+                </a>
+              </li>
           </ul>
-
+          </ul>
           <!-- Divider -->
           <hr class="my-3">
           <!-- Heading -->
