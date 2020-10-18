@@ -47,7 +47,7 @@
             
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('formulario') }}">
-                  <i class="ni ni-circle-08 text-pink"></i>
+                  <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">CRUD EJEMPLO</span>
                 </a>
               </li>
