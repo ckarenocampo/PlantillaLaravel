@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/','PagesController@welcome');
+//Route::get('/','PagesController@welcome');
 
-Route::match(['get','post'],'/inicio','PagesController@login');
+Route::match(['get','post'],'/','PagesController@login_admin');
 Route::get('registro','PagesController@registro')->name('registro');
-Route::get('dashboard','PagesController@dashboard')->name('dashboard');
+Route::get('admin','PagesController@admin')->name('dashboard');
 Route::get('profile','PagesController@profile')->name('profile');
 Route::get('tables','PagesController@tables')->name('tables');
 Route::get('icons','PagesController@icons')->name('icons');

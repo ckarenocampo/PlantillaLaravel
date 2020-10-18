@@ -1,3 +1,4 @@
+ <!-- Navbar -->
 <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" >
@@ -24,12 +25,12 @@
         </div>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="{{ url('/dashboard') }}" class="nav-link">
+            <a href="{{ url('/admin') }}" class="nav-link">
               <span class="nav-link-inner--text">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/inicio') }}" class="nav-link">
+            <a href="{{ url('/') }}" class="nav-link">
               <span class="nav-link-inner--text">Iniciar sesión</span>
             </a>
           </li>
@@ -43,4 +44,3 @@
         </div>
     </div>
   </nav>
-  

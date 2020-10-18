@@ -7,24 +7,24 @@ use Illuminate\Http\Request;
 use Auth;
 class PagesController extends Controller
 {
-   public function login(Request $request){
+   public function login_admin(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>'1'])){
                // echo "Correcto"; die;
-                return redirect('/dashboard');
+                return redirect('/admin');
             }else{
                 echo "Fallo"; die;
             }
         }     
-    	return view('/login_ar');
+    	return view('/login_admin');
     }
 
 	public function registro(){
-    	return view('/register_ar');
+    	return view('/register_admin');
     }
-    public function dashboard(){
-    	return view('/dashboard');
+    public function admin(){
+    	return view('/admin');
     }
     public function profile(){
     	return view('/profile');
