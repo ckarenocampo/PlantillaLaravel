@@ -9,8 +9,9 @@ class PagesController extends Controller
 {
    public function login_admin(Request $request){
         if($request->isMethod('post')){
+         
             $data = $request->input();
-            if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>'1'])){
+            if(\App\User::attempt(['email'=>$data['email'],'password'=>$data['password']])){
                // echo "Correcto"; die;
                 return redirect('/admin');
             }else{

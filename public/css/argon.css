@@ -3351,15 +3351,15 @@ fieldset:disabled a.btn
 .btn-primary
 {
     color: #fff;
-    border-color: #5e72e4;
-    background-color: #5e72e4;
+    border-color: #0c587e;
+    background-color: #0c587e;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 .btn-primary:hover
 {
     color: #fff;
-    border-color: #5e72e4; 
-    background-color: #5e72e4;
+    border-color: #5fa5c9; 
+    background-color: #5fa5c9;
 }
 .btn-primary:focus,
 .btn-primary.focus
@@ -5671,6 +5671,13 @@ input[type='button'].btn-block
 
     padding: .25rem .75rem;
 }
+.nav-linkf
+{
+    display: block;
+    color: #fff;
+    padding: .25rem .75rem;
+}
+
 .nav-link:hover,
 .nav-link:focus
 {
@@ -5712,7 +5719,7 @@ input[type='button'].btn-block
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link
 {
-    color: #525f7f;
+    color: #eeeef0;
     border-color: #dee2e6 #dee2e6 #f8f9fe; 
     background-color: #f8f9fe;
 }
@@ -8769,7 +8776,7 @@ a.close.disabled
 
 .bg-primary
 {
-    background-color: #5e72e4 !important;
+    background-color: #0c587e !important;
 }
 
 a.bg-primary:hover,
@@ -8784,7 +8791,10 @@ button.bg-primary:focus
 {
     background-color: #f7fafc !important;
 }
-
+.bg-secondarylg
+{
+    background-color: #eaedf0 !important;
+}
 a.bg-secondary:hover,
 a.bg-secondary:focus,
 button.bg-secondary:hover,
@@ -8873,7 +8883,7 @@ button.bg-dark:focus
 
 .bg-default
 {
-    background-color: #172b4d !important;
+    background-color: #0c587e !important;
 }
 
 a.bg-default:hover,
@@ -20980,6 +20990,7 @@ textarea[resize='horizontal']
 .navbar-horizontal .navbar-nav .nav-link .nav-link-inner--text
 {
     margin-left: .25rem;
+    color: #0c587e;
 }
 
 .navbar-horizontal .navbar-brand
@@ -21396,8 +21407,8 @@ textarea[resize='horizontal']
 .navbar-vertical .navbar-brand-img,
 .navbar-vertical .navbar-brand > img
 {
-    max-width: 100%;
-    max-height: 2rem;
+    max-width: 95%;
+    max-height: 4rem;
 }
 @media (min-width: 768px)
 {
@@ -24158,7 +24169,7 @@ button.bg-lighter:focus
 
 .bg-gradient-secondary
 {
-    background: linear-gradient(87deg, #f7fafc 0, #f7f8fc 100%) !important;
+    background: linear-gradient(87deg, #c5f7c3 0, #c5f7c3  100%) !important;
 }
 
 .bg-gradient-success
@@ -24649,7 +24660,7 @@ button.section-darker:focus
 
 .fill-default
 {
-    fill: #172b4d;
+    fill: #0c587e;
 }
 
 .stroke-default

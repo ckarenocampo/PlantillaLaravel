@@ -4,7 +4,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <img src="img/brand/USO.png" class="navbar-brand-img" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -46,7 +46,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('formulario') }}">
+                <a class="nav-link" href="{{ url('usuarios') }}">
                   <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">CRUD EJEMPLO</span>
                 </a>
