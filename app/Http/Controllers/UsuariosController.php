@@ -42,7 +42,18 @@ class UsuariosController extends Controller
     {
         $usuarios = \App\User::find($id);
         // falta funcion editar
-       // return view('edit',compact('usuarios','id'));
+        return view('edit',compact('usuarios','id'));
+    }
+    public function update(Request $request, $id)
+    {
+        $usuarios=$request->except('_token','_method');
+        
+        $usuarios = \App\User::find($id);
+        $usuarios->name=$request->input('name');
+        $usuarios->email=$request->input('email');
+        $usuarios->password=Hash::make($request->input('password'));
+        $usuarios->save();
+        return redirect('usuarios');
     }
     public function destroy($id)
     {
