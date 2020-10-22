@@ -26,13 +26,13 @@
               <div class="text-center text-muted mb-4">
                 <small>Inicio de sesión</small>
               </div>
-              <form role="form" method="post" action="{{ url('/')}}">{{csrf_field()}} 
+              <form role="form" method="post" action="{{ url('/')}}"> @csrf 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Correo" name="email" type="email">
+                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Correo" name="email" type="email" value="{{ old('email') }}" required autofocus>
                   </div>
                 </div>
                 <div class="form-group">
@@ -40,7 +40,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Contraseña" name="password" type="password">
+                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Contraseña" name="password" type="password" required>
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
