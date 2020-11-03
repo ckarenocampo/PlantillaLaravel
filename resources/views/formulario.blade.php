@@ -3,6 +3,7 @@
 <!-- Head -->
 @include('admin_header')
 <body>
+<!-- Navbar -->
 @include('admin_sidenav')
 <!-- Main content -->
 <div class="main-content" id="panel">
@@ -10,11 +11,26 @@
     @include('admin_topnav')
     <!-- Header -->
     <!-- Header -->
-    <div class="header pb-6 d-flex align-items-center" style="min-height: 150px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-      <!-- Mask -->
-      <span class="mask bg-gradient-default opacity-8"></span>
-      <!-- Header container -->
-  
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-2">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Usuarios</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="#">Usuarios</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Agregar</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+              <a href="{{ url('usuarios') }}" class="btn btn-sm btn-neutral">Atrás</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   <!-- Page content -->
     <div class="container-fluid mt--6">
@@ -23,117 +39,45 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Agregar nuevo estudiante </h3>
+                  <h3 class="heading-small text-muted mb-0">Agregar nuevo usuario </h3>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <form>
-                <h6 class="heading-small text-muted mb-4">Informacion General</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-username">Nombres</label>
-                        <input type="text" id="input-name" class="form-control" placeholder="Nombre" value="lucky">
+              <form method="post" action="{{url('formulario')}}" enctype="multipart/form-data" role="form">
+               @csrf
+               <div class="form-group">
+                <label class="form-control-label" for="input-username">Nombre</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3"> 
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-email">Apellidos</label>
-                        <input type="email" id="input-apellidos" class="form-control" placeholder="jesse">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <legend class="form-control-label">Choose your gender:</legend>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-1">
-                      <div class="form-group">
-                        <label for="male">Male</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-1">
-                        <input type="radio" name="gender" id="male" value="male" checked>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-1">
-                      <div class="form-group">
-                        <label for="male">Female</label>
-                      </div>
-                    </div>
-                    <div class="col-lg-1">
-                        <input type="radio" name="gender" id="female" value="male" checked>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-email">Email address</label>
-                      <input type="email" id="input-email" class="form-control" placeholder="jesse@example.com">
-                    </div>
+                      <input  class="form-control"  type="text" name="name" placeholder="Nombre" >
                   </div>
                 </div>
-                </div>
-                <hr class="my-4" />
-                <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-address">Direccion</label>
-                        <input id="input-address" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+               
+                 
+                <div class="form-group">
+                  <label class="form-control-label" for="input-email">Correo electrónico</label>
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-city">Departamento</label>
-                        <input type="text" id="input-city" class="form-control" placeholder="City" value="New York">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-country">Municipio</label>
-                        <input type="text" id="input-country" class="form-control" placeholder="Country" value="United States">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-country">Telefono</label>
-                        <input type="number" id="input-postal-code" class="form-control" placeholder="Postal code">
-                      </div>
-                    </div>
+                      <input class="form-control"  type="email" name="email" placeholder="usuario@example.com">
                   </div>
                 </div>
-                <hr class="my-4" />
-                <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">Informacion academica</h6>
-                <div class="pl-lg-4">
-                <div class="row">
-                  <div class="form-group">
-                    <label class="form-control-label">Selecciona una carrera:</label>
-                  </div>
-                  <div class="col-lg-4">
-                      <div class="form-group">
-                        <select class="form-control" name="carrers" id="carrers">
-                          <option value="sistemas">Ing. en sistemas</option>
-                          <option value="industrial">Ing. Industrial</option>
-                          <option value="electrica">Ing. Electrica</option>
-                          <option value="agronegocios">Ing. Agronegocios</option>
-                        </select>
-                      </div>
+
+                <div class="form-group">
+                  <label class="form-control-label" for="input-address">Contraseña</label>
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
+                    <input class="form-control"  type="password" name="password" placeholder="********" >
                   </div>
                 </div>
-                <div class="col-8 ">
-                  <a href="#!" class="btn btn-sm btn-primary">Save</a>
+                <div class=" text-center">
+                  <button type="submit"  class="btn btn-primary mt-4">Agregar</button>
                 </div>
               </form>
             </div>

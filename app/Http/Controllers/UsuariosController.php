@@ -11,14 +11,7 @@ class UsuariosController extends Controller
     {
         return view('register_admin');
     }
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+  
     public function store(Request $request)
     {
     
@@ -27,10 +20,7 @@ class UsuariosController extends Controller
         $usuarios ->email=$request->get('email');
         $usuarios ->password= Hash::make($request->get('password'));
         $usuarios ->save();
-       
-        //return redirect('usuarios')->with('success', 'Information has been added');
         return redirect('/')->with('success', 'Information has been added');
-
     }
     
     public function index()
@@ -44,6 +34,7 @@ class UsuariosController extends Controller
         // falta funcion editar
         return view('edit',compact('usuarios','id'));
     }
+    
     public function update(Request $request, $id)
     {
         $usuarios=$request->except('_token','_method');
@@ -53,7 +44,7 @@ class UsuariosController extends Controller
         $usuarios->email=$request->input('email');
         $usuarios->password=Hash::make($request->input('password'));
         $usuarios->save();
-        return redirect('usuarios');
+        return redirect('usuarios')->with('success', 'Information has been changed');
     }
     public function destroy($id)
     {

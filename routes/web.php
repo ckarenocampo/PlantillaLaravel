@@ -14,15 +14,17 @@
 //Route::get('/','PagesController@welcome');
 
 Route::match(['get','post'],'/','PagesController@login_admin');
-Route::get('registro','PagesController@registro')->name('registro');
-Route::get('admin','PagesController@admin')->name('dashboard');
-Route::get('profile','PagesController@profile')->name('profile');
-Route::get('tables','PagesController@tables')->name('tables');
-Route::get('icons','PagesController@icons')->name('icons');
-Route::get('formulario','PagesController@formulario')->name('formulario');
+Route::get('registro','PagesController@registro');
+Route::get('admin','PagesController@admin');
+Route::get('profile','PagesController@profile');
+Route::get('tables','PagesController@tables');
+Route::get('icons','PagesController@icons');
+
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('usuarios','UsuariosController');
+//Route::get('formulario','UsuariosController@formulario');
+Route::resource('formulario','PagesController');
