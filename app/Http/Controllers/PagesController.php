@@ -15,7 +15,7 @@ class PagesController extends Controller
                // echo "Correcto"; die;
                 return redirect('/admin');
             }else{
-                echo "Fallo"; die;
+                return redirect('/')->with('flash_message_error','Correo o contraseña inválido');
             }
         }     
     	return view('/login_admin');

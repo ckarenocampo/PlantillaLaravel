@@ -11,7 +11,8 @@
     @include('admin_topnav')
      <!-- Header -->
     <!-- Header -->
-    <div class="header bg-primary pb-6">
+     <!-- Header -->
+    <div class="header bg-primary pb-5">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-2">

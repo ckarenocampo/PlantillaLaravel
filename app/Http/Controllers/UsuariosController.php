@@ -20,7 +20,7 @@ class UsuariosController extends Controller
         $usuarios ->email=$request->get('email');
         $usuarios ->password= Hash::make($request->get('password'));
         $usuarios ->save();
-        return redirect('/')->with('success', 'Information has been added');
+        return redirect('/')->with('success', 'Informacion guardada exitosamente');
     }
     
     public function index()
@@ -44,12 +44,12 @@ class UsuariosController extends Controller
         $usuarios->email=$request->input('email');
         $usuarios->password=Hash::make($request->input('password'));
         $usuarios->save();
-        return redirect('usuarios')->with('success', 'Information has been changed');
+        return redirect('usuarios')->with('success', 'Informacion actualizada exitosamente');
     }
     public function destroy($id)
     {
         $usuarios = \App\User::find($id);
         $usuarios->delete();
-        return redirect('usuarios')->with('success','Information has been  deleted');
+        return redirect('usuarios')->with('success','Informacion borrada exitosamente');
     }
 }

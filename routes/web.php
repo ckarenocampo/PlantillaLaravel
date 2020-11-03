@@ -19,6 +19,7 @@ Route::get('admin','PagesController@admin');
 Route::get('profile','PagesController@profile');
 Route::get('tables','PagesController@tables');
 Route::get('icons','PagesController@icons');
+Route::get('formulario','PagesController@formulario');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
@@ -27,4 +28,4 @@ Auth::routes();
 
 Route::resource('usuarios','UsuariosController');
 //Route::get('formulario','UsuariosController@formulario');
-Route::resource('formulario','PagesController');
+//Route::resource('formulario','PagesController');
