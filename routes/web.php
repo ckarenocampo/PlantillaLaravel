@@ -15,17 +15,19 @@
 
 Route::match(['get','post'],'/','PagesController@login_admin');
 Route::get('registro','PagesController@registro');
-Route::get('admin','PagesController@admin');
-Route::get('profile','PagesController@profile');
-Route::get('tables','PagesController@tables');
-Route::get('icons','PagesController@icons');
-Route::get('formulario','PagesController@formulario');
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::get('admin','PagesController@admin');
+    Route::get('profile','PagesController@profile');
+    Route::get('tables','PagesController@tables');
+    Route::get('icons','PagesController@icons');
+    Route::get('formulario','PagesController@formulario');
+    Route::resource('usuarios','UsuariosController');
+    Route::resource('formulario','PagesController');
+});
+
+Route::get('logout','PagesController@logout');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-
-Route::resource('usuarios','UsuariosController');
-//Route::get('formulario','UsuariosController@formulario');
-//Route::resource('formulario','PagesController');

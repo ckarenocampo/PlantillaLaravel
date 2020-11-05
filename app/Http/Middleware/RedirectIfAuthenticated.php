@@ -19,6 +19,8 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
+        }else{
+            return redirect()->action('PagesController@login_admin')->with('flash_message_error','Por favor inicie sesión');
         }
 
         return $next($request);

@@ -178,7 +178,7 @@
                   <span>Settings</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ url('/') }}" class="dropdown-item">
+                <a href="{{ url('/logout') }}" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
