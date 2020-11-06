@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form method="post" action="{{url('formulario')}}" enctype="multipart/form-data" role="form">
+              <form method="post" action="{{action('UsuariosController@store')}}" enctype="multipart/form-data" role="form">
                @csrf
                <div class="form-group">
                 <label class="form-control-label" for="input-username">Nombre</label>
@@ -55,8 +55,7 @@
                       <input  class="form-control"  type="text" name="name" placeholder="Nombre" >
                   </div>
                 </div>
-               
-                 
+                        
                 <div class="form-group">
                   <label class="form-control-label" for="input-email">Correo electrónico</label>
                     <div class="input-group input-group-merge input-group-alternative mb-3">
@@ -76,6 +75,17 @@
                     <input class="form-control"  type="password" name="password" placeholder="********" >
                   </div>
                 </div>
+
+                <div class="form-group">                  
+                  <label class="form-control-label" for="input-rol">Seleccione el rol del usuario</label>
+                  <div class="input-group input-group-merge input-group-alternative">
+                  <select class="form-control" name="rol" id="rol">
+                  <option value="1">Administrador</option>
+                  <option value="2">Usuario</option>
+                  </select>
+                  </div>
+                </div>
+
                 <div class=" text-center">
                   <button type="submit"  class="btn btn-primary mt-4">Agregar</button>
                 </div>

@@ -25,7 +25,7 @@
               <div class="text-center text-muted mb-4">
                 <small>Registrarse</small>
               </div>
-              <form method="post" action="{{url('usuarios')}}" enctype="multipart/form-data" role="form">
+              <form method="post" action="{{url('register_admin')}}" enctype="multipart/form-data" role="form">
               @csrf
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
@@ -66,6 +66,11 @@
                   <button type="submit" class="btn btn-primary mt-4">Crear cuenta</button>
                 </div>
               </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 text-center">
+              <a href="{{ url('/') }}" class="text-light"><small>Iniciar sesion</small></a>
             </div>
           </div>
         </div>

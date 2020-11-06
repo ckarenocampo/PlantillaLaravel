@@ -160,9 +160,11 @@
                   <span class="avatar avatar-sm rounded-circle">
                     <img alt="Image placeholder" src="{{asset('img/theme/team-4.jpg')}}">
                   </span>
+                  @if(Session::has('name'))
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold">{!! session('name') !!}</span>
                   </div>
+                  @endif
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">

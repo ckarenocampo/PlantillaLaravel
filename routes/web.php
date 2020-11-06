@@ -12,22 +12,24 @@
 */
 
 //Route::get('/','PagesController@welcome');
+//Route::get('registro','PagesController@registro');
 
 Route::match(['get','post'],'/','PagesController@login_admin');
-Route::get('registro','PagesController@registro');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::get('admin','PagesController@admin');
     Route::get('profile','PagesController@profile');
     Route::get('tables','PagesController@tables');
     Route::get('icons','PagesController@icons');
-    Route::get('formulario','PagesController@formulario');
+    Route::get('usuarios_agregar','UsuariosController@usuarios_agregar');
     Route::resource('usuarios','UsuariosController');
-    Route::resource('formulario','PagesController');
 });
 
 Route::get('logout','PagesController@logout');
+Route::resource('register_admin','RegisterController');
+
+Auth::routes();
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();

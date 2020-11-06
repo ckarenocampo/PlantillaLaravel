@@ -18,33 +18,27 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+            <!-- 
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/icons') }}">
                 <i class="ni ni-planet text-orange"></i>
                 <span class="nav-link-text">Icons</span>
               </a>
             </li>
-            
+            -->
             <li class="nav-item">
               <a href="{{ url('/profile') }}" class="nav-link" >
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Perfil</span>
               </a>
             </li>
+            @if(session('rol')=='admin')
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/tables') }}">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text">Tables</span>
               </a>
             </li>
-           <!-- 
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('formulario') }}">
-                <i class="ni ni-circle-08 text-pink"></i>
-                <span class="nav-link-text">Formulario ejemplo</span>
-              </a>
-            </li> 
-            -->
             
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('usuarios') }}">
@@ -52,6 +46,7 @@
                   <span class="nav-link-text">CRUD USUARIOS</span>
                 </a>
               </li>
+            @endif  
           </ul>
           </ul>
           <!-- Divider -->

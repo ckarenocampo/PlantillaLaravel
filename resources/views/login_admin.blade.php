@@ -79,7 +79,7 @@
               <a href="#" class="text-light"><small>Olvidé mi contraseña</small></a>
             </div>
             <div class="col-6 text-right">
-              <a href="{{ url('/registro') }}" class="text-light"><small>Registrarse</small></a>
+              <a href="{{ url('/register_admin') }}" class="text-light"><small>Registrarse</small></a>
             </div>
           </div>
         </div>

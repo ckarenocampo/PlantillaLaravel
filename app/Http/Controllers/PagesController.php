@@ -11,45 +11,40 @@ use Session;
 class PagesController extends Controller
 {
    public function login_admin(Request $request){
+
         if($request->isMethod('post')){
+            Session::regenerate();
+                        
             $data = $request->input();
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
-                //echo "Correcto"; die;
-                //Session::put('adminSession',$data['email']);
-               return redirect('/admin');
+                Session::put('name',$request->user()->name);
+                Session::put('email',$request->user()->email);
+ 
+               if($request->user()->authorizeRoles('admin')){
+                    Session::put('rol','admin');
+                    return redirect('/admin');
+                  
+               }else{
+                    if($request->user()->authorizeRoles('user')){
+                        Session::put('rol','user');
+                        return redirect('/admin');
+                    }
+               }
             }else{
                 return redirect('/')->with('flash_message_error','Correo o contraseña inválido');
             }
         }     
     	return view('/login_admin');
     }
-    public function admin(){
-        /*if(Session::has('adminSession')){
-            
-        }else{
-            return redirect('/')->with('flash_message_error', 'Por favor inicie sesión');
-        }*/
+    public function admin(Request $request){
     	return view('/admin');
     }
-    public function index()
-    {
-        return view('formulario');
+
+    public function logout(){
+        Session::flush();
+        return redirect('/')->with('flash_message_success','Cerró sesión exitosamente');
     }
-    public function store(Request $request)
-    {
-        $usuarios = new \App\User;
-        $usuarios ->name=$request->get('name');
-        $usuarios ->email=$request->get('email');
-        $usuarios ->password= Hash::make($request->get('password'));
-        $usuarios ->save();
-        return redirect('/usuarios')->with('success', 'Information has been added');
-    }
-    public function formulario(){
-        return view('/formulario');
-    }
-	public function registro(){
-    	return view('/register_admin');
-    }
+ 
     public function profile(){
     	return view('/profile');
     }
@@ -59,8 +54,5 @@ class PagesController extends Controller
     public function icons(){
         return view('/icons');
     }
-    public function logout(){
-        Session::flush();
-        return redirect('/')->with('flash_message_success','Cerró sesión exitosamente');
-    }
+    
 }

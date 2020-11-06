@@ -7,32 +7,33 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    public function create()
+ 
+    public function index(Request $request)
     {
-        return view('register_admin');
+        //$request->user()->authorizeRoles(['user','admin']);
+        //return $request->session()->all();
+        $usuarios=\App\User::all();
+        return view('usuarios',compact('usuarios'));
     }
-  
+    public function usuarios_agregar(){
+        return view('/usuarios_agregar');
+    }
     public function store(Request $request)
     {
-    
+        //AGREGA UN USUARIO DESDE AGREGAR USUARIOS
         $usuarios = new \App\User;
         $usuarios ->name=$request->get('name');
         $usuarios ->email=$request->get('email');
         $usuarios ->password= Hash::make($request->get('password'));
         $usuarios ->save();
-        return redirect('/')->with('success', 'Informacion guardada exitosamente');
-    }
-    
-    public function index()
-    {
-        $usuarios=\App\User::all();
-        return view('usuarios',compact('usuarios'));
+        $rol=$request->get('rol');
+        $usuarios->roles()->attach($rol);
+        return redirect('/usuarios')->with('success', 'Informacion agregada exitosamente');
     }
     public function edit($id)
     {
         $usuarios = \App\User::find($id);
-        // falta funcion editar
-        return view('edit',compact('usuarios','id'));
+        return view('usuarios_edit',compact('usuarios','id'));
     }
     
     public function update(Request $request, $id)

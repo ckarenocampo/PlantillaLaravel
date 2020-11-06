@@ -77,6 +77,16 @@
                     <input class="form-control" value="{{$usuarios['password']}}" type="password" name="password">
                   </div>
                 </div>
+
+                <div class="form-group">                  
+                  <label class="form-control-label" for="input-rol">Rol del usuario</label>
+                  <div class="input-group input-group-merge input-group-alternative">
+                  <select value="{{$usuarios['rol']}}" class="form-control" name="rol" id="rol">
+                  <option value="1">Administrador</option>
+                  <option value="2">Usuario</option>
+                  </select>
+                  </div>
+                </div>
             
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary mt-4">Actualizar</button>
