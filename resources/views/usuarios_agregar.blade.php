@@ -79,9 +79,14 @@
                 <div class="form-group">                  
                   <label class="form-control-label" for="input-rol">Seleccione el rol del usuario</label>
                   <div class="input-group input-group-merge input-group-alternative">
-                  <select class="form-control" name="rol" id="rol">
+                  <select class="form-control" name="rol_id" id="rol_id">
+                  @foreach($roles as $roles)
+                  <option value="{{$roles['id']}}">{{$roles['name_rol']}}</option>
+
+                  @endforeach
+                  <!--
                   <option value="1">Administrador</option>
-                  <option value="2">Usuario</option>
+                  <option value="2">Usuario</option> -->
                   </select>
                   </div>
                 </div>

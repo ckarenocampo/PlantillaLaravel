@@ -19,15 +19,20 @@ class PagesController extends Controller
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
                 Session::put('name',$request->user()->name);
                 Session::put('email',$request->user()->email);
- 
-               if($request->user()->authorizeRoles('admin')){
-                    Session::put('rol','admin');
+                Session::put('rol',$request->user()->rol_id);
+                //echo(session('rol'));
+                //return $request->session()->all();
+               //if($request->user()->authorizeRoles('admin')){
+                if(session('rol')==1){
+                    //Session::put('rol','admin');
                     return redirect('/admin');
                   
                }else{
-                    if($request->user()->authorizeRoles('user')){
-                        Session::put('rol','user');
-                        return redirect('/admin');
+                    //if($request->user()->authorizeRoles('user')){
+                        if(session('rol')==2){
+
+                       // Session::put('rol','user');
+                        return redirect('/profile');
                     }
                }
             }else{

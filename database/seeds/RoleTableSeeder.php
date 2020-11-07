@@ -13,11 +13,11 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         $role = new \App\Role();
-        $role->name_rol= "admin";
+        $role->name_rol= "Administrador";
         $role->save();
 
         $role = new \App\Role();
-        $role->name_rol= "user";
+        $role->name_rol= "Usuario";
         $role->save();
         
     }

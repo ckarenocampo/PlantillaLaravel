@@ -20,6 +20,7 @@ class CreateRoleUserTable extends Migration
             $table->timestamps();
         });
     }
+        //$user->roles()->attach($role_admin);
 
     /**
      * Reverse the migrations.

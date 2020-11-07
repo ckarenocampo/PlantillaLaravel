@@ -4,7 +4,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="img/brand/USO.png" class="navbar-brand-img" >
+          <img src="/img/brand/USO.png" class="navbar-brand-img" >
         </a>
       </div>
       <div class="navbar-inner">
@@ -32,7 +32,7 @@
                 <span class="nav-link-text">Perfil</span>
               </a>
             </li>
-            @if(session('rol')=='admin')
+            @if(session('rol')=='1')
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/tables') }}">
                 <i class="ni ni-bullet-list-67 text-default"></i>

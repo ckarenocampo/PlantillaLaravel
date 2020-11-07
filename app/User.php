@@ -12,7 +12,7 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany('App\Role');
     }
-
+/*
     public function authorizeRoles($roles){
         if($this->hasAnyRole($roles)){
             return true;
@@ -42,7 +42,7 @@ class User extends Authenticatable
             }
         }
         return false;
-    }
+    }*/
     /**
      * The attributes that are mass assignable.
      *

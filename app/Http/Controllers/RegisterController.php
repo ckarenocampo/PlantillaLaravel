@@ -11,6 +11,7 @@ class RegisterController extends Controller
     {
         return view('register_admin');
     }
+    
     public function create()
     {
         return view('register_admin');
@@ -18,11 +19,13 @@ class RegisterController extends Controller
   
     public function store(Request $request)
     {
-        //REGISTRA UN USUARIO
+        $role_user = \App\Role::where('name_rol','Usuario')->first();
+
         $usuarios = new \App\User;
         $usuarios ->name=$request->get('name');
         $usuarios ->email=$request->get('email');
         $usuarios ->password= Hash::make($request->get('password'));
+        $usuarios ->rol_id = $role_user->id;
         $usuarios ->save();
         $usuarios->roles()->attach(2);
         return redirect('/')->with('success', 'Informacion guardada exitosamente');
