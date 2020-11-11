@@ -20,7 +20,7 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="#">Usuarios</a></li>
+                  <li class="breadcrumb-item active"><a href="{{url('/usuarios')}}">Usuarios</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Agregar</li>
                 </ol>
               </nav>

@@ -20,7 +20,7 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="#">Usuarios</a></li>
+                  <li class="breadcrumb-item active"><a href="{{url('/usuarios')}}">Usuarios</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Editar</li>
                 </ol>
               </nav>
@@ -88,9 +88,8 @@
                   @foreach($roles as $rol)
                   <option value="{{$rol['id']}}"  {{ $usuarios['rol_id'] == $rol['id'] ? 'selected="selected"' : '' }}>{{$rol['name_rol']}}</option>
                   @endforeach 
-    
-                 
-                
+                     
+               
                   <!--<select value="{{$usuarios['rol_id']}}" class="form-control" name="rol_id">
                   @foreach($roles as $roles)
                   <option value="{{$roles['id']}}">{{$roles['name_rol']}}</option>
