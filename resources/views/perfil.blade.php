@@ -82,7 +82,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Contraseña nueva</label>
-                        <input class="form-control" value="" type="password" name="password" id="password" required >
+                        <input class="form-control" type="password" name="password" id="password" required >
                       </div>
                     </div>
                   </div>
@@ -91,14 +91,14 @@
                     <div class="col">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Confirmar contraseña nueva</label>
-                          <input class="form-control" value="" type="password" name="password-confirmation"  id="password-confirmation" required >
+                          <input class="form-control" type="password" name="password-confirmation"  id="password-confirmation" required >
                         </div>
                       </div>
                   </div>
 
                   <div class="row">
                     <div class="col">
-                      <div class="registrationFormAlert form-control-label "  id="CheckPasswordMatch"></div>
+                      <div class="registrationFormAlert form-control-label" id="CheckPasswordMatch"></div>
                     </div>
                   </div>
 
@@ -127,27 +127,8 @@
   <script src="{{(' js/argon.js?v=1.2.0 ')}}"></script>
   <!-- JQuery Match Passwords -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    function checkPasswordMatch() {
-        var password = $("#password").val();
-        var confirmPassword = $("#password-confirmation").val();
-        if (password != confirmPassword){
-          $("#CheckPasswordMatch").html("Contraseñas no coinciden");
-          $("#CheckPasswordMatch").css({'color':'red'});
-          $('#submitPass').attr("disabled", true);
-        }
-        else{
-          $("#CheckPasswordMatch").html("Contraseñas coinciden");
-          $("#CheckPasswordMatch").css({'color':'green'});
-          $('#submitPass').attr("disabled", false);
+  <script src="{{('js/passwordsMatch.js')}}"></script>
 
-        }
-           
-    }
-    $(document).ready(function () {
-       $("#password-confirmation").keyup(checkPasswordMatch);
-    });
-    </script>
      <!--VIEW PASSWORD JS-->
   <script src="{{asset('js/custom.js')}}"></script>
 </body>

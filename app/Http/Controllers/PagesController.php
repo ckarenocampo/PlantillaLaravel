@@ -26,7 +26,7 @@ class PagesController extends Controller
                     return redirect('/admin');   
                 }else{
                     if(session('rol')==2){
-                        return redirect('/profile');
+                        return redirect('/admin');
                     }
                }
             }else{
@@ -50,11 +50,11 @@ class PagesController extends Controller
         if($request->isMethod('post')){
             $id = $request->user()->id;
             $usuarios = \App\User::find(strval($id));
-            $passSession = $request->user()->password;
 
+            $passSession = $request->user()->password;
             $passActual = $request->get('password-actual');
-            //echo $passActual;
-            if(Hash::check($passSession, bcrypt($passActual))){
+
+            if(Hash::check($passActual, $passSession)){
                     $usuarios ->password = Hash::make($request->get('password'));
                     $usuarios ->save();
                     return redirect('/perfil')->with('message_success', 'Contraseña actualizada exitosamente');

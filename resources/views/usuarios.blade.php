@@ -39,11 +39,21 @@
         <!-- Page content -->
         <br />
         <div class="container-fluid mt--7">
-         
-          <div class="card  pt-2 pb-2" >
-        
+          <div class="card  " >
+          @if(Session::has('success'))
+              <div class="alert alert-success alert-block ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>{!! session('success') !!}</strong>
+              </div>
+            @endif
+            @if(Session::has('message_error'))
+              <div class="alert alert-success alert-block ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>{!! session('message_error') !!}</strong>
+              </div>
+            @endif
             <!-- Light table -->
-            <div class="table-responsive ">
+            <div class="table-responsive pt-2 pb-2">
           
                 <table id="example" class="table table-striped display nowrap" >
                 <thead>

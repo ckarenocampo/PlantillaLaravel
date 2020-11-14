@@ -37,6 +37,12 @@
     <div class="container-fluid mt--6">
       <div class="col-xl-8 order-xl-1">
         <div class="card">
+        @if(Session::has('message_error'))
+              <div class="alert alert-success alert-block ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>{!! session('message_error') !!}</strong>
+              </div>
+            @endif
           <div class="card-header">
             <div class="row align-items-center">
               <div class="col-8">
@@ -45,7 +51,7 @@
             </div>
           </div>
           <div class="card-body">
-            <form method="post" action="{{url('/usuarios/'.$usuarios['id'])}}" enctype="multipart/form-data" role="form">
+            <form method="post" id="formEdit" name="formEdit"  action="{{url('/usuarios/'.$usuarios['id'])}}" enctype="multipart/form-data" role="form">
                 
                 @csrf
                 @method('PATCH')
@@ -80,35 +86,44 @@
                   </div>
                 </div>
 
-              
-                
                 <!-- Reestablecer Contraseña -->
                 <div class="form-group">
                   <label class="heading-small text-muted mb-2">Reestablecer Contraseña </label>
                   <input class="form-control-checkbox" onclick="myFunction()" type="checkbox" id="checkPass" name="checkPass">
                   <hr class="my-0" />
                 </div>
+
                 <div id="passContainer" >
                   <div class="row">
-                      <div class="col-lg-6">
+                      <div class="col">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Contraseña actual</label>
-                            <input class="form-control" value="" disabled="true" type="password" name="passActual" id="passActual" required>
+                            <input class="form-control"  disabled="true" type="password" name="password-actual" id="password-actual" required>
                         </div>
                       </div>
                   </div>
+
                     <div class="row">
-                      <div class="col-lg-6">
+                      <div class="col">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Contraseña nueva</label>
-                          <input class="form-control" value="{{$usuarios['password']}}" disabled="true" type="password" name="password" id="password" required>
+                          <input class="form-control"  disabled="true" type="password" name="password" id="password" required>
                         </div>
                       </div>
-                      <div class="col-lg-6">
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Repetir contraseña nueva</label> 
-                          <input class="form-control" value="" disabled="true" type="password" name="password-confirmation"  id="password-confirmation" required>
+                          <input class="form-control" disabled="true" type="password" name="password-confirmation"  id="password-confirmation" required>
                         </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="registrationFormAlert form-control-label" id="CheckPasswordMatch"></div>
                       </div>
                     </div>
                 </div>
@@ -132,21 +147,23 @@
   <script src="{{asset('vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{asset('js/argon.js?v=1.2.0')}}"></script>
+
   <!-- Check cambiar password-->
   <script>
         function myFunction() {
             
             var checker = document.getElementById('checkPass'); 
-            var passActual = document.getElementById('passActual'); 
+            var passActual = document.getElementById('password-actual'); 
             var passNew = document.getElementById('password'); 
-            var passConf = document.getElementById('passConf'); 
-
+            var passConf = document.getElementById('password-confirmation'); 
+            //var formulario = document.getElementById('formEdit'); 
             // when unchecked or checked, run the function 
             checker.onchange = function(){ 
               if(this.checked){ 
                 passActual.disabled = false; 
                 passNew.disabled = false; 
                 passConf.disabled = false; 
+           
               }
               else { 
                 passActual.disabled = true; 
@@ -156,25 +173,30 @@
             } 
         }
     </script>
-    <script>
+  <!-- JQuery Match Passwords -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
     function checkPasswordMatch() {
-        var password = $("#password").val();
-        var confirmPassword = $("#password-confirmation").val();
-        if (password != confirmPassword){
-          $("#CheckPasswordMatch").html("Contraseñas no coinciden");
-          $("#CheckPasswordMatch").css({'color':'red'});
-          $('#submitPass').attr("disabled", true);
-        }
-        else{
-          $("#CheckPasswordMatch").html("Contraseñas coinciden");
-          $("#CheckPasswordMatch").css({'color':'green'});
-          $('#submitPass').attr("disabled", false);
-        }
+    var password = $("#password").val();
+    var confirmPassword = $("#password-confirmation").val();
+    if (password != confirmPassword){
+      $("#CheckPasswordMatch").html("Contraseñas no coinciden");
+      $("#CheckPasswordMatch").css({'color':'red'});
+      $('#submitPass').attr("disabled", true);
     }
-    $(document).ready(function () {
-       $("#password-confirmation").keyup(checkPasswordMatch);
-    });
-    </script>
+    else{
+      $("#CheckPasswordMatch").html("Contraseñas coinciden");
+      $("#CheckPasswordMatch").css({'color':'green'});
+      $('#submitPass').attr("disabled", false);
+
+    }
+       
+}
+$(document).ready(function () {
+   $("#password-confirmation").keyup(checkPasswordMatch);
+});
+  </script>
+
 
 </body>
 

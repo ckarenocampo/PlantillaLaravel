@@ -52,15 +52,35 @@ class UsuariosController extends Controller
     public function update(Request $request, $id)
     {
         $usuarios=$request->except('_token','_method');
-        
-        $usuarios = \App\User::find($id);
-        $usuarios->name=$request->input('name');
-        $usuarios->email=$request->input('email');
-        $usuarios->password=Hash::make($request->input('password'));
-        $usuarios ->rol_id = $request->get('rol_id');
-        $usuarios->save();
-        return redirect('usuarios')->with('success', 'Informacion actualizada exitosamente');
+
+        if($request->get('password')==null){
+            $usuarios = \App\User::find($id);
+            $usuarios->name=$request->input('name');
+            $usuarios->email=$request->input('email');
+            $usuarios->password=$request->user()->password;
+            $usuarios ->rol_id = $request->get('rol_id');
+            $usuarios->save();
+            return redirect('usuarios')->with('success', 'Informacion actualizada exitosamente');    
+        }else{
+            $passSession = $request->user()->password;
+            $passActual = $request->get('password-actual');
+
+            if(Hash::check($passActual, $passSession)){
+                $usuarios=$request->except('_token','_method');
+                $usuarios = \App\User::find($id);
+                $usuarios->name=$request->input('name');
+                $usuarios->email=$request->input('email');
+                $usuarios->password=Hash::make($request->input('password'));
+                $usuarios ->rol_id = $request->get('rol_id');
+                $usuarios->save();
+                return redirect('/usuarios')->with('success', 'Informacion actualizada exitosamente');
+            }else{ 
+                return redirect('/usuarios_edit')->with('message_error', 'La contraseña actual no es correcta');
+            } 
+        }
+
     }
+    
  
     public function destroy($id)
     {
