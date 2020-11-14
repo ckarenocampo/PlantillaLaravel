@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 use Illuminate\Http\Request;
 
@@ -13,25 +14,18 @@ class PagesController extends Controller
    public function login_admin(Request $request){
 
         if($request->isMethod('post')){
-            Session::regenerate();
-                        
+            Session::regenerate();   
             $data = $request->input();
+            
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
                 Session::put('name',$request->user()->name);
                 Session::put('email',$request->user()->email);
                 Session::put('rol',$request->user()->rol_id);
-                //echo(session('rol'));
-                //return $request->session()->all();
-               //if($request->user()->authorizeRoles('admin')){
-                if(session('rol')==1){
-                    //Session::put('rol','admin');
-                    return redirect('/admin');
-                  
-               }else{
-                    //if($request->user()->authorizeRoles('user')){
-                        if(session('rol')==2){
 
-                       // Session::put('rol','user');
+                if(session('rol')==1){
+                    return redirect('/admin');   
+                }else{
+                    if(session('rol')==2){
                         return redirect('/profile');
                     }
                }
@@ -41,23 +35,37 @@ class PagesController extends Controller
         }     
     	return view('/login_admin');
     }
-    public function admin(Request $request){
-    	return view('/admin');
-    }
-
     public function logout(){
         Session::flush();
         return redirect('/')->with('flash_message_success','Cerró sesión exitosamente');
     }
- 
-    public function profile(){
-    	return view('/profile');
+    public function admin(Request $request){
+    	return view('/admin');
     }
-	public function tables(){
-    	return view('/tables');
-    }
-    public function icons(){
-        return view('/icons');
-    }
+    public function perfil(Request $request)
+    {
+        $id = $request->user()->id;
+        $usuarios = \App\User::find(strval($id));
+
+        if($request->isMethod('post')){
+            $id = $request->user()->id;
+            $usuarios = \App\User::find(strval($id));
+            $passSession = $request->user()->password;
+
+            $passActual = $request->get('password-actual');
+            //echo $passActual;
+            if(Hash::check($passSession, bcrypt($passActual))){
+                    $usuarios ->password = Hash::make($request->get('password'));
+                    $usuarios ->save();
+                    return redirect('/perfil')->with('message_success', 'Contraseña actualizada exitosamente');
+                    
+            }else{ 
+                return redirect('/perfil')->with('message_error', 'La contraseña actual no es correcta');
     
+            } 
+        }
+
+        return view('/perfil',compact('usuarios'));
+        
+    }
 }

@@ -7,7 +7,7 @@
   <meta name="author" content="Creative Tim">
   <title>Sistema Soporte de Decisión USO</title>
   
-  <link rel="icon" href="{{asset('img/brand/favicon.png')}}" type="image/png">
+  <link rel="icon" href="{{asset('img/brand/USOlogo.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->

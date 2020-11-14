@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 use Illuminate\Http\Request;
 
@@ -10,7 +11,6 @@ class UsuariosController extends Controller
  
     public function index(Request $request)
     {
-        //$request->user()->authorizeRoles(['user','admin']);
         //return $request->session()->all();
         $usuarios=\App\User::all();
         return view('usuarios',compact('usuarios'));
@@ -21,18 +21,25 @@ class UsuariosController extends Controller
     }
     public function store(Request $request)
     {
-        //$role_admin = Role::where('name_rol','admin')->first();
-        //$role_user = Role::where('name_rol','user')->first();
         //AGREGA UN USUARIO DESDE AGREGAR USUARIOS
         $usuarios = new \App\User;
-        $usuarios ->name=$request->get('name');
-        $usuarios ->email=$request->get('email');
-        $usuarios ->password= Hash::make($request->get('password'));
-        $usuarios ->rol_id = $request->get('rol_id');
-        $usuarios ->save();
-        $rol = $usuarios ->rol_id;
-        $usuarios->roles()->attach($rol);
-        return redirect('/usuarios')->with('success', 'Informacion agregada exitosamente');
+        $emailre = $usuarios->email=$request->get('email');
+        $correo = \App\User::where('email',$emailre)->first();
+        $tam =  strlen($correo);
+        //echo $tam;
+        //echo $correo;
+        if($tam > 1){
+            return redirect('/usuarios_agregar')->with('flash_message_error','ERROR El correo ya fue registrado');
+        }else{ 
+            $usuarios ->name=$request->get('name');
+            $usuarios ->email=$request->get('email');
+            $usuarios ->password= Hash::make($request->get('password'));
+            $usuarios ->rol_id = $request->get('rol_id');
+            $usuarios ->save();
+            $rol = $usuarios ->rol_id;
+            $usuarios->roles()->attach($rol);
+            return redirect('/usuarios')->with('success', 'Informacion agregada exitosamente');
+        }
     }
     public function edit($id)
     {
@@ -54,6 +61,7 @@ class UsuariosController extends Controller
         $usuarios->save();
         return redirect('usuarios')->with('success', 'Informacion actualizada exitosamente');
     }
+ 
     public function destroy($id)
     {
         $usuarios = \App\User::find($id);

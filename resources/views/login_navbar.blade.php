@@ -8,6 +8,18 @@
     height: 20%;
     text-align: center;
   }
+  .field-icon {
+  float: right;
+  margin-right: 2%;
+  padding-top: 4%;
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+}
+.container{
+  padding-top:30px;
+  margin: auto;
+}
 </style>
 
  <!-- Navbar -->
@@ -16,6 +28,5 @@
       <a class="imagenuso" >
         <img src="{{asset('img/brand/USO.png')}}" >
       </a>
-      
     </div>
  </nav>

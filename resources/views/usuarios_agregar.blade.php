@@ -35,6 +35,12 @@
   <!-- Page content -->
     <div class="container-fluid mt--6">
         <div class="col-xl-8 order-xl-1">
+        @if(Session::has('flash_message_error'))
+              <div class="alert alert-danger alert-block ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>{!! session('flash_message_error') !!}</strong>
+              </div>
+            @endif
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
@@ -52,7 +58,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                      <input  class="form-control"  type="text" name="name" placeholder="Nombre" >
+                      <input  class="form-control"  type="text" name="name" placeholder="Nombre" required >
                   </div>
                 </div>
                         
@@ -62,7 +68,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control"  type="email" name="email" placeholder="usuario@example.com">
+                      <input class="form-control"  type="email" name="email" placeholder="usuario@example.com" required>
                   </div>
                 </div>
 
@@ -72,7 +78,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control"  type="password" name="password" placeholder="********" >
+                    <input class="form-control"  type="password" name="password" placeholder="********" required>
                   </div>
                 </div>
 

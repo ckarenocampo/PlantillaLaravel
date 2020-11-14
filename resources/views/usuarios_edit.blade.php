@@ -55,7 +55,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" value="{{$usuarios['name']}}" type="text" name="name">
+                    <input class="form-control" value="{{$usuarios['name']}}" type="text" name="name" autofocus>
                   </div>
                 </div>
 
@@ -68,36 +68,50 @@
                     <input class="form-control" value="{{$usuarios['email']}}" type="email" name="email">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="form-control-label" for="input-address">Contraseña</label>
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" value="{{$usuarios['password']}}" type="password" name="password">
-                  </div>
-                </div>
 
                 <div class="form-group">                  
                   <label class="form-control-label" for="input-rol">Rol del usuario</label>
                   <div class="input-group input-group-merge input-group-alternative">
-                  <!--<input class="form-control" value="{{$usuarios['rol_id']}}" type="text" >-->
-                  
                   <select class="form-control" name="rol_id">
-
                   @foreach($roles as $rol)
                   <option value="{{$rol['id']}}"  {{ $usuarios['rol_id'] == $rol['id'] ? 'selected="selected"' : '' }}>{{$rol['name_rol']}}</option>
                   @endforeach 
-                     
-               
-                  <!--<select value="{{$usuarios['rol_id']}}" class="form-control" name="rol_id">
-                  @foreach($roles as $roles)
-                  <option value="{{$roles['id']}}">{{$roles['name_rol']}}</option>
-                  @endforeach-->
                   </select>
                   </div>
                 </div>
-            
+
+              
+                
+                <!-- Reestablecer Contraseña -->
+                <div class="form-group">
+                  <label class="heading-small text-muted mb-2">Reestablecer Contraseña </label>
+                  <input class="form-control-checkbox" onclick="myFunction()" type="checkbox" id="checkPass" name="checkPass">
+                  <hr class="my-0" />
+                </div>
+                <div id="passContainer" >
+                  <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Contraseña actual</label>
+                            <input class="form-control" value="" disabled="true" type="password" name="passActual" id="passActual" required>
+                        </div>
+                      </div>
+                  </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Contraseña nueva</label>
+                          <input class="form-control" value="{{$usuarios['password']}}" disabled="true" type="password" name="password" id="password" required>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Repetir contraseña nueva</label> 
+                          <input class="form-control" value="" disabled="true" type="password" name="password-confirmation"  id="password-confirmation" required>
+                        </div>
+                      </div>
+                    </div>
+                </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary mt-4">Actualizar</button>
                 </div>
@@ -118,6 +132,50 @@
   <script src="{{asset('vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{asset('js/argon.js?v=1.2.0')}}"></script>
+  <!-- Check cambiar password-->
+  <script>
+        function myFunction() {
+            
+            var checker = document.getElementById('checkPass'); 
+            var passActual = document.getElementById('passActual'); 
+            var passNew = document.getElementById('password'); 
+            var passConf = document.getElementById('passConf'); 
+
+            // when unchecked or checked, run the function 
+            checker.onchange = function(){ 
+              if(this.checked){ 
+                passActual.disabled = false; 
+                passNew.disabled = false; 
+                passConf.disabled = false; 
+              }
+              else { 
+                passActual.disabled = true; 
+                passNew.disabled = true; 
+                passConf.disabled = true; 
+              } 
+            } 
+        }
+    </script>
+    <script>
+    function checkPasswordMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#password-confirmation").val();
+        if (password != confirmPassword){
+          $("#CheckPasswordMatch").html("Contraseñas no coinciden");
+          $("#CheckPasswordMatch").css({'color':'red'});
+          $('#submitPass').attr("disabled", true);
+        }
+        else{
+          $("#CheckPasswordMatch").html("Contraseñas coinciden");
+          $("#CheckPasswordMatch").css({'color':'green'});
+          $('#submitPass').attr("disabled", false);
+        }
+    }
+    $(document).ready(function () {
+       $("#password-confirmation").keyup(checkPasswordMatch);
+    });
+    </script>
+
 </body>
 
 </html>

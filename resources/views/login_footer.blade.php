@@ -1,26 +1,25 @@
 <!-- Footer -->
-<footer class="py-5" id="footer-main">
-    <div class="container">
-      <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-          <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2020 <a href="https://www.creative-tim.com" class="nav-linkf" target="_blank">Creative Tim</a>
-          </div>
-        </div>
-        <div class="col-xl-6">
-          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-            
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-linkf" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="http://blog.creative-tim.com" class="nav-linkf" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-linkf" target="_blank"> License</a>
-            </li>
-          </ul>
+<footer class="pt-0 mt-2">
+  <div class="container">
+    <div class="row align-items-center justify-content-lg-between">
+      <div class="col-lg-6">
+        <div class="copyright text-left text-lg-left text-muted">
+          &copy; 2020 <a href="https://www.creative-tim.com" class=" text-white font-weight-normal ml-1" target="_blank">Creative Tim</a>
         </div>
       </div>
+      <div class="col-lg-6">
+        <ul class="nav nav-footer justify-content-center justify-content-lg-end"> 
+          <li class="nav-item">
+            <a href="https://www.creative-tim.com/presentation" class="nav-linkf font-weight-light" target="_blank">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="http://blog.creative-tim.com" class="nav-linkf font-weight-light" target="_blank">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-linkf font-weight-light" target="_blank"> License</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </footer>
+  </div>
+</footer>

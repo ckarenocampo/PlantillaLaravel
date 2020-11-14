@@ -20,6 +20,12 @@
       <!-- Table -->
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
+          @if(Session::has('flash_message_error'))
+            <div class="alert alert-danger alert-block ">
+              <button type="button" class="close" data-dismiss="alert">x</button>
+              <strong>{!! session('flash_message_error') !!}</strong>
+            </div>
+          @endif
           <div class="card bg-secondarylg border-0">   
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
@@ -40,7 +46,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Correo" type="email" name="email">
+                    <input class="form-control" placeholder="Correo" type="email" name="email" required autofocus> 
                   </div>
                 </div>
                 <div class="form-group">
@@ -48,7 +54,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Constraseña" type="password" name="password">
+                    <input class="form-control" placeholder="Constraseña" type="password" name="password" required>
                   </div>
                 </div>
                 <div class="text-muted font-italic"><small>Contraseña segura: <span class="text-success font-weight-700">Contraseña.123</span></small></div>

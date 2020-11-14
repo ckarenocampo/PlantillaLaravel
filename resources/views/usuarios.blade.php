@@ -12,7 +12,7 @@
       <!-- Header -->
       <!-- Header -->
 
-      <div class="header bg-primary pb-0">
+      <div class="header bg-primary pb-6">
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
@@ -38,69 +38,69 @@
       </div>
         <!-- Page content -->
         <br />
-        <div class="container-fluid mt--2">
+        <div class="container-fluid mt--7">
          
-                                          <div class="card  pt-2 pb-2" >
-                                        
-                                            <!-- Light table -->
-                                            <div class="table-responsive ">
-                                          
-                                               <table id="example" class="table table-striped display nowrap" >
-                                                <thead>
-                                                  <tr>
-                                                    <th>ID</th>
-                                                    <th>Nombre</th>
-                                                    <th>Correo</th>
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  @foreach($usuarios as $usuarios)
-                                                  <tr>
-                                                    <td>{{$usuarios['id']}}</td>
-                                                    <td>{{$usuarios['name']}}</td>
-                                                    <td>{{$usuarios['email']}}</td>
-                                                    <td><a href="{{url('/usuarios/'. $usuarios['id'].'/edit')}}" class="btn btn-warning">Edit</a></td>
-                                                    <td>
-                                                       <form action="{{action('UsuariosController@destroy', $usuarios['id'])}}" method="post">
-                                                        @csrf
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <button class="btn btn-danger" type="submit" onclick="return confirm ('Desea borrar este usuario?')">Delete</button>
-                                                      </form>
-                                                    </td>
-                                                  </tr>
-                                                  @endforeach
-                                                </tbody>
-                                              </table>
-                                            </div>
-                                              <!-- Card footer -->
-                                              <!-- <div class="card-footer py-4">
-                                                <nav aria-label="...">
-                                                  <ul class="pagination justify-content-end mb-0">
-                                                    <li class="page-item disabled">
-                                                      <a class="page-link" href="#" tabindex="-1">
-                                                        <i class="fas fa-angle-left"></i>
-                                                        <span class="sr-only">Previous</span>
-                                                      </a>
-                                                    </li>
-                                                    <li class="page-item active">
-                                                      <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item">
-                                                      <a class="page-link" href="#">
-                                                        <i class="fas fa-angle-right"></i>
-                                                        <span class="sr-only">Next</span>
-                                                      </a>
-                                                    </li>
-                                                  </ul>
-                                                </nav>
-                                              </div>-->
-                                          </div>
+          <div class="card  pt-2 pb-2" >
+        
+            <!-- Light table -->
+            <div class="table-responsive ">
+          
+                <table id="example" class="table table-striped display nowrap" >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($usuarios as $usuarios)
+                  <tr>
+                    <td>{{$usuarios['id']}}</td>
+                    <td>{{$usuarios['name']}}</td>
+                    <td>{{$usuarios['email']}}</td>
+                    <td><a href="{{url('/usuarios/'. $usuarios['id'].'/edit')}}" class="btn btn-warning">Edit</a></td>
+                    <td>
+                        <form action="{{action('UsuariosController@destroy', $usuarios['id'])}}" method="post">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm ('Desea borrar este usuario?')">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+              <!-- Card footer -->
+              <!-- <div class="card-footer py-4">
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">
+                        <i class="fas fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">
+                        <i class="fas fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>-->
+          </div>
             
           <!-- Footer -->
           @include('admin_footer')
@@ -117,18 +117,18 @@
       <script src="{{(' js/argon.js?v=1.2.0 ')}}"></script>
      <!-- DATATABLES JS -->
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
-
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="{{(' js/jquery.dataTables.js ')}}"></script>
+      <script src="{{(' js/dataTables.buttons.js ')}}"></script>
+      <script src="{{(' js/buttons.flash.js')}}"></script>
+      <script src="{{(' js/jszip.js')}}"></script>
+      <script src="{{(' js/pdfmake.js')}}"></script>
+      <script src="{{(' js/vfs_fonts.js')}}"></script>
+      <script src="{{(' js/buttons.html5.js')}}"></script>
+      <script src="{{(' js/buttons.print.js')}}"></script>
+      <!-- DATATABLES CSS -->
+      <link rel="stylesheet" href="{{('css/jquery.dataTables.css')}}">
+      <link rel="stylesheet" href="{{('css/buttons.dataTables.css')}}">
 
    <script>
    $("body").ready(function() {

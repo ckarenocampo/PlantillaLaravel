@@ -13,35 +13,21 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ url('/admin') }}">
-                <i class="ni ni-tv-2 text-primary"></i>
+              <a class="nav-link " href="{{ url('/admin') }}" >
+                <i class="ni ni-tv-2 text-blue"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-            <!-- 
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/icons') }}">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">Icons</span>
-              </a>
-            </li>
-            -->
-            <li class="nav-item">
-              <a href="{{ url('/profile') }}" class="nav-link" >
-                <i class="ni ni-single-02 text-yellow"></i>
-                <span class="nav-link-text">Perfil</span>
-              </a>
-            </li>
-            @if(session('rol')=='1')
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/tables') }}">
-                <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">Tables</span>
+              <a href="{{ url('/perfil') }}" class="nav-link"  >
+                <i class="ni ni-single-02 text-blue"></i>
+                <span class="nav-link-text">Mi cuenta</span>
               </a>
             </li>
             
+            @if(session('rol')=='1')
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('usuarios') }}">
+                <a class="nav-link" href="{{ url('usuarios') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">CRUD USUARIOS</span>
                 </a>
@@ -53,26 +39,26 @@
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
+            <span class="docs-normal">Otros sitios web</span>
           </h6>
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
+              <a class="nav-link" href="https://www.usonsonate.edu.sv/" target="_blank">
+                <i class="ni ni-book-bookmark"></i>
+                <span class="nav-link-text">Universidad</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">Components</span>
+              <a class="nav-link" href="https://portal.microsoftonline.com/" target="_blank">
+                <i class="ni ni-email-83"></i>
+                <span class="nav-link-text">Correo Institucional</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
-                <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Plugins</span>
+              <a class="nav-link" href="http://sinapsis.usonsonate.edu.sv/login/index.php" target="_blank">
+                <i class="ni ni-hat-3"></i>
+                <span class="nav-link-text">Aula Virtual</span>
               </a>
             </li>
             

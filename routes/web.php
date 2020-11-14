@@ -18,9 +18,7 @@ Route::match(['get','post'],'/','PagesController@login_admin');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::get('admin','PagesController@admin');
-    Route::get('profile','PagesController@profile');
-    Route::get('tables','PagesController@tables');
-    Route::get('icons','PagesController@icons');
+    Route::match(['get','post'],'perfil','PagesController@perfil');
     Route::get('usuarios_agregar','UsuariosController@usuarios_agregar');
     Route::resource('usuarios','UsuariosController');
 });
