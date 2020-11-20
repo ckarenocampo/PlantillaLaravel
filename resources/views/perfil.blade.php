@@ -67,16 +67,6 @@
                         </div>
                       </div>
                   </div>
-                  
-                  <!--   <div class="row">
-                  @if(Session::has('message_error'))
-                      <div class="col-lg-8">
-                        <div class="form-group">
-                        <div class="registrationFormAlert form-control-label mt-4" style="color:red;" >{!! session('message_error') !!}</div>
-                        </div>
-                      </div>
-                      @endif
-                  </div>-->
 
                   <div class="row">
                     <div class="col">
@@ -129,7 +119,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="{{('js/passwordsMatch.js')}}"></script>
 
-     <!--VIEW PASSWORD JS-->
+     <!--VIEW EYE PASSWORD JS-->
   <script src="{{asset('js/custom.js')}}"></script>
 </body>
 </html>

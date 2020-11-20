@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary mt-4">Actualizar</button>
+                  <button type="submit"  id="submitPass" class="btn btn-primary mt-4">Actualizar</button>
                 </div>
             </form>
           </div>
@@ -148,54 +148,56 @@
   <!-- Argon JS -->
   <script src="{{asset('js/argon.js?v=1.2.0')}}"></script>
 
-  <!-- Check cambiar password-->
+  <!-- Check si deseo cambiar password-->
   <script>
-        function myFunction() {
-            
-            var checker = document.getElementById('checkPass'); 
-            var passActual = document.getElementById('password-actual'); 
-            var passNew = document.getElementById('password'); 
-            var passConf = document.getElementById('password-confirmation'); 
-            //var formulario = document.getElementById('formEdit'); 
-            // when unchecked or checked, run the function 
-            checker.onchange = function(){ 
-              if(this.checked){ 
-                passActual.disabled = false; 
-                passNew.disabled = false; 
-                passConf.disabled = false; 
-           
-              }
-              else { 
-                passActual.disabled = true; 
-                passNew.disabled = true; 
-                passConf.disabled = true; 
-              } 
-            } 
-        }
+    function myFunction() {
+        var checker = document.getElementById('checkPass'); 
+        var passActual = document.getElementById('password-actual'); 
+        var passNew = document.getElementById('password'); 
+        var passConf = document.getElementById('password-confirmation'); 
+  
+        // when unchecked or checked, run the function 
+        checker.onchange = function(){ 
+          if(this.checked){ 
+            passActual.disabled = false; 
+            passNew.disabled = false; 
+            passConf.disabled = false; 
+          }
+          else { 
+            passActual.disabled = true; 
+            passNew.disabled = true; 
+            passConf.disabled = true; 
+            passActual.value = ""; 
+            passNew.value = ""; 
+            passConf.value = "";
+          } 
+        } 
+    }
     </script>
   <!-- JQuery Match Passwords -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
+  <script> 
     function checkPasswordMatch() {
-    var password = $("#password").val();
-    var confirmPassword = $("#password-confirmation").val();
-    if (password != confirmPassword){
-      $("#CheckPasswordMatch").html("Contraseñas no coinciden");
-      $("#CheckPasswordMatch").css({'color':'red'});
-      $('#submitPass').attr("disabled", true);
-    }
-    else{
-      $("#CheckPasswordMatch").html("Contraseñas coinciden");
-      $("#CheckPasswordMatch").css({'color':'green'});
-      $('#submitPass').attr("disabled", false);
+      var password = $("#password").val();
+      var confirmPassword = $("#password-confirmation").val();
+      if (password != confirmPassword){
+        $("#CheckPasswordMatch").html("Contraseñas no coinciden");
+        $("#CheckPasswordMatch").css({'color':'red'});
+        $('#submitPass').attr("disabled", true);
+      }
+      else{
+        $("#CheckPasswordMatch").html("Contraseñas coinciden");
+        $("#CheckPasswordMatch").css({'color':'green'});
+        $('#submitPass').attr("disabled", false);
 
+      }
+          
     }
-       
-}
-$(document).ready(function () {
-   $("#password-confirmation").keyup(checkPasswordMatch);
-});
-  </script>
+    $(document).ready(function () {
+      $("#password-confirmation").keyup(checkPasswordMatch);
+    });
+</script>
+
 
 
 </body>

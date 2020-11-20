@@ -20,8 +20,10 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('admin','PagesController@admin');
     Route::match(['get','post'],'perfil','PagesController@perfil');
     Route::get('usuarios_agregar','UsuariosController@usuarios_agregar');
-    Route::match(['get','post'],'usuarios_edit','UsuariosController@update');
+   // Route::match(['get','post'],'editPass','UsuariosController@editPass');
     Route::resource('usuarios','UsuariosController');
+    //Route::get('usuarios/data',['as' => 'usuarios.data', 'uses' => 'UsuariosController@data']);
+    Route::get('data', 'UsuariosController@data');
 });
 
 Route::get('logout','PagesController@logout');

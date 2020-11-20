@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -11,10 +11,28 @@ class UsuariosController extends Controller
  
     public function index(Request $request)
     {
-        //return $request->session()->all();
-        $usuarios=\App\User::all();
-        return view('usuarios',compact('usuarios'));
+        //$usuarios=\App\User::all();
+        $usuarios = DB::table('users') ->select('id','name','email')->get();
+     
+        $usuarios = json_encode($usuarios);
+        //echo $users['1'];
+        //dd($users);
+        //echo "<pre>"; print_r($users); die;
+        //return view('usuarios',['users' => $users]);
+        //return json_encode($users);
+
+        return view('/usuarios', compact('usuarios'));
+        //return view('/usuarios');
+
+
     }
+    public function data()
+    {
+        $users = DB::table('users') ->select('id','name','email')->get();
+        return json_encode($users);
+
+    }
+    
     public function usuarios_agregar(){
         $roles = \App\Role::all();
         return view('/usuarios_agregar', compact('roles'));
