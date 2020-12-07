@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
- 
+
     public function index(Request $request)
     {
-        //$usuarios=\App\User::all();
-        $usuarios = DB::table('users') ->select('id','name','email')->get();
-     
-        $usuarios = json_encode($usuarios);
+        $usuarios=\App\User::all();
+        //$usuarios = DB::table('users') ->select('id','name','email')->get();
+
+        //$usuarios = json_encode($usuarios);
         //echo $users['1'];
         //dd($users);
         //echo "<pre>"; print_r($users); die;
@@ -32,7 +32,7 @@ class UsuariosController extends Controller
         return json_encode($users);
 
     }
-    
+
     public function usuarios_agregar(){
         $roles = \App\Role::all();
         return view('/usuarios_agregar', compact('roles'));
@@ -48,7 +48,7 @@ class UsuariosController extends Controller
         //echo $correo;
         if($tam > 1){
             return redirect('/usuarios_agregar')->with('flash_message_error','ERROR El correo ya fue registrado');
-        }else{ 
+        }else{
             $usuarios ->name=$request->get('name');
             $usuarios ->email=$request->get('email');
             $usuarios ->password= Hash::make($request->get('password'));
@@ -66,7 +66,7 @@ class UsuariosController extends Controller
 
         return view('usuarios_edit',compact('usuarios','id','roles'));
     }
-    
+
     public function update(Request $request, $id)
     {
         $usuarios=$request->except('_token','_method');
@@ -78,10 +78,11 @@ class UsuariosController extends Controller
             $usuarios->password=$request->user()->password;
             $usuarios ->rol_id = $request->get('rol_id');
             $usuarios->save();
-            return redirect('usuarios')->with('success', 'Informacion actualizada exitosamente');    
+            return redirect('usuarios')->with('success', 'Informacion actualizada exitosamente');
         }else{
+            echo "hola";
             $passSession = $request->user()->password;
-            $passActual = $request->get('password-actual');
+            $passActual = $request->input('password-actual');
 
             if(Hash::check($passActual, $passSession)){
                 $usuarios=$request->except('_token','_method');
@@ -92,14 +93,14 @@ class UsuariosController extends Controller
                 $usuarios ->rol_id = $request->get('rol_id');
                 $usuarios->save();
                 return redirect('/usuarios')->with('success', 'Informacion actualizada exitosamente');
-            }else{ 
-                return redirect('/usuarios_edit')->with('message_error', 'La contraseña actual no es correcta');
-            } 
+            }else{
+                return redirect('/usuarios')->with('message_error', 'La contraseña actual no es correcta');
+            }
         }
 
     }
-    
- 
+
+
     public function destroy($id)
     {
         $usuarios = \App\User::find($id);

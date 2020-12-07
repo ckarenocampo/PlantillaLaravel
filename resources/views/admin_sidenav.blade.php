@@ -24,15 +24,29 @@
                 <span class="nav-link-text">Mi cuenta</span>
               </a>
             </li>
-            
+
             @if(session('rol')=='1')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('estudiantes') }}" >
+                  <i class="ni ni-bullet-list-67 text-blue"></i>
+
+                  <span class="nav-link-text">ESTUDIANTES</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('inscripciones') }}" >
+                  <i class="ni ni-bullet-list-67 text-blue"></i>
+
+                  <span class="nav-link-text">INSCRIPCIONES</span>
+                </a>
+              </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('usuarios') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">CRUD USUARIOS</span>
                 </a>
               </li>
-            @endif  
+            @endif
           </ul>
           </ul>
           <!-- Divider -->
@@ -61,7 +75,7 @@
                 <span class="nav-link-text">Aula Virtual</span>
               </a>
             </li>
-            
+
           </ul>
         </div>
       </div>

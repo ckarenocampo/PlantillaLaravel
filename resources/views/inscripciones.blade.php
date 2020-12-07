@@ -17,11 +17,11 @@
           <div class="header-body">
             <div class="row align-items-center py-2">
               <div class="col-lg-6 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Estudiantes</h6>
+                <h6 class="h2 text-white d-inline-block mb-0">Inscripciones</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Estudiantes</a></li>
+                    <li class="breadcrumb-item active"><a href="{{url('/inscripciones')}}">Inscripciones</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Default</li>
                   </ol>
                 </nav>
@@ -52,6 +52,7 @@
             <div class="table-responsive pt-2 pb-2">
 
                 <table id="example" class="table table-striped display nowrap" >
+
               </table>
             </div>
           </div>
@@ -93,28 +94,28 @@
 
    <script>
 
-function getData(cb_func) {
+    function getData(cb_func) {
         $.ajax({
-        url: "https://uso-vistas-proyectos.herokuapp.com/vistas/estudiantes",
+        url: "https://uso-vistas-proyectos.herokuapp.com/vistas/inscripciones",
         success: cb_func
         });
     }
 
    $(document).ready(function() {
+
         getData(function( data ) {
             var columns = [];
             data = data;
             columnNames = Object.keys(data.datos[0]);
             for (var i in columnNames) {
             columns.push({data: columnNames[i], title: columnNames[i]});
-        }
+            }
+            $('#example').DataTable( {
 
-        $('#example').DataTable( {
-
-            dom: 'Blfrtip',
-            buttons:[
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                    ],
+                dom: 'Blfrtip',
+                buttons:[
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        ],
             data: data.datos,
             columns: columns,
 
@@ -141,9 +142,8 @@ function getData(cb_func) {
             }
 
             });
-
         });
-    });
+   });
     </script>
   </body>
 </html>

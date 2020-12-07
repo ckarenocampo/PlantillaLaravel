@@ -15,7 +15,6 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->increments('IDExpediente');
-            $table->timestamps();
             $table->string('CodigoEstudiante');
             $table->string('PrimerNombre');
             $table->string('SegundoNombre');
@@ -29,7 +28,7 @@ class CreateEstudiantesTable extends Migration
             $table->string('Cum');
             $table->string('FechaNacimiento');
             $table->string('FechaCreacion');
-
+            $table->timestamps();
         });
     }
 

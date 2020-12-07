@@ -15,7 +15,6 @@ class CreateInscripcionesTable extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('IDInscripcion');
-            $table->timestamps();
             $table->string('IDGrupo');
             $table->string('IDExpediente');
             $table->string('IDPensum');
@@ -34,6 +33,8 @@ class CreateInscripcionesTable extends Migration
             $table->string('FechaCreacion');
             $table->string('FechaInscripcion');
             $table->string('Resultado');
+            $table->timestamps();
+
 
         });
     }

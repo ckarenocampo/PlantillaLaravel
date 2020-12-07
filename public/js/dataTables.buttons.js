@@ -508,7 +508,7 @@
         return c;
     };
     w.defaults = {
-        buttons: ["copy", "excel", "csv", "pdf", "print"],
+        buttons: ["copy", "excel", "csv", "pdf", "print", "pagesLength"],
         name: "main",
         tabIndex: 0,
         dom: {

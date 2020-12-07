@@ -158,7 +158,8 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{asset('img/theme/team-4.jpg')}}">
+                      <!--USUARIO LOGOUT-->
+                    <img alt="Image placeholder" src="{{asset('img/theme/profile-user.png')}}">
                   </span>
                   @if(Session::has('name'))
                   <div class="media-body  ml-2  d-none d-lg-block">

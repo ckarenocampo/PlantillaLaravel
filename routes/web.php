@@ -22,8 +22,15 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('usuarios_agregar','UsuariosController@usuarios_agregar');
    // Route::match(['get','post'],'editPass','UsuariosController@editPass');
     Route::resource('usuarios','UsuariosController');
-    //Route::get('usuarios/data',['as' => 'usuarios.data', 'uses' => 'UsuariosController@data']);
     Route::get('data', 'UsuariosController@data');
+
+    Route::get('inscripciones','PagesController@inscripciones');
+
+    Route::resource('estudiantes','EstudiantesController');
+    Route::get('dataEstudiante', 'EstudiantesController@dataEstudiante');
+    Route::get('dataInscripciones', 'EstudiantesController@dataInscripciones');
+
+    //Route::get('usuarios/data',['as' => 'usuarios.data', 'uses' => 'UsuariosController@data']);
 });
 
 Route::get('logout','PagesController@logout');
