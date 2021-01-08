@@ -17,11 +17,11 @@
           <div class="header-body">
             <div class="row align-items-center py-2">
               <div class="col-lg-6 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Inscripciones</h6>
+                <h6 class="h2 text-white d-inline-block mb-0">Inscripciones por alumno</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item active"><a href="{{url('/inscripciones')}}">Inscripciones</a></li>
+                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Inscripciones por alumno </a></li>
                     <li class="breadcrumb-item active" aria-current="page">Default</li>
                   </ol>
                 </nav>
@@ -50,13 +50,8 @@
 
 
             <div class="table-responsive pt-2 pb-2">
+
                 <table id="example" class="table table-striped display nowrap" >
-                    <thead>
-                        <tr>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </thead>
               </table>
             </div>
           </div>
@@ -78,12 +73,11 @@
 
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
-
-      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-
+      <!--<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>-->
 
 
-      <!--<script src="{{(' js/jquery.dataTables.js ')}}"></script>-->
+
+      <script src="{{(' js/jquery.dataTables.js ')}}"></script>
 
       <script src="{{(' js/dataTables.buttons.js ')}}"></script>
       <script src="{{(' js/buttons.flash.js')}}"></script>
@@ -99,71 +93,59 @@
 
    <script>
 
-    function getData(cb_func) {
+function getData(cb_func) {
         $.ajax({
-        url: "{{url('/datosInscripcion')}}",
+        url: "{{url('/estudiantesInscritos')}}",
+
+
         success: cb_func
         });
     }
 
    $(document).ready(function() {
-
-
         getData(function( data ) {
             var columns = [];
             data = data;
-            columnNames = Object.keys(data.datos[0]);
+            columnNames = Object.keys(data[0]);
             for (var i in columnNames) {
             columns.push({data: columnNames[i], title: columnNames[i]});
-            }
-
+        }
 
             $('#example').DataTable( {
-                dom: 'Bfrtip',
+
+                dom: 'Blfrtip',
                 buttons:[
-                        'copy', 'csv', 'excel', 'pdf', 'print',
+                        'copy', 'csv', 'excel', 'pdf', 'print'
                         ],
-            data: data.datos,
-            columns: columns,
+                data: data,
+                columns: columns,
 
-            initComplete: function () {
-             //table = $('#example').DataTable( );
-             //var firstHeaderRow = $(table.table().header() );
-               //var firstHeaderRow = $('table').find('thead').eq(0);
-              //  firstHeaderRow.clone().insertBefore( firstHeaderRow );
+                initComplete: function () {
+                    this.api().columns().every( function () {
+                        var column = this;
 
+                        var select = $('</br><select><option value=""></option></select>')
+                            .appendTo( $(column.header()) )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
 
-                this.api().columns().every( function () {
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
 
-                    var column = this;
-
-
-
-                    var select = $('<select><option value=""></option></select>')
-                        .appendTo( $('table').find('thead').eq(0).eq(column.index()) )
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                            );
-
-                            column
-                                .search( val ? '^'+val+'$' : '', true, false )
-                                .draw();
-                        } );
-
-                    column.data().unique().sort().each( function ( d, j ) {
-                        select.append( '<option value="'+d+'">'+d+'</option>' )
-                    } );
-
-                } );
-
-            }
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' );
+                        });
+                    });
+                }
 
             });
 
-
         });
-   });
+    });
     </script>
   </body>
 </html>

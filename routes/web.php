@@ -25,10 +25,17 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('data', 'UsuariosController@data');
 
     Route::get('inscripciones','PagesController@inscripciones');
+    Route::get('inscripcionesporestudiante','PagesController@inscripcionesporestudiante');
+
 
     Route::resource('estudiantes','EstudiantesController');
     Route::get('dataEstudiante', 'EstudiantesController@dataEstudiante');
-    Route::get('dataInscripciones', 'EstudiantesController@dataInscripciones');
+
+    Route::get('datosEstudiantes', 'ConsultasController@datosEstudiantes');
+    Route::get('datosInscripcion', 'ConsultasController@datosInscripcion');
+    Route::get('estudiantesInscritos', 'ConsultasController@estudiantesInscritos');
+
+
 
     //Route::get('usuarios/data',['as' => 'usuarios.data', 'uses' => 'UsuariosController@data']);
 });

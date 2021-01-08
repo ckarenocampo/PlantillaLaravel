@@ -95,7 +95,10 @@
 
 function getData(cb_func) {
         $.ajax({
-        url: "https://uso-vistas-proyectos.herokuapp.com/vistas/estudiantes",
+        url: "{{url('/datosEstudiantes')}}",
+      //  url: "{{url('/estudiantesInscritos')}}",
+
+
         success: cb_func
         });
     }

@@ -71,4 +71,7 @@ class PagesController extends Controller
     public function inscripciones(Request $request){
         return view('/inscripciones');
     }
+    public function inscripcionesporestudiante(Request $request){
+        return view('/estudiantes_inscritos');
+    }
 }

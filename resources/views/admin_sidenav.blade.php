@@ -27,6 +27,13 @@
 
             @if(session('rol')=='1')
             <li class="nav-item">
+                <a class="nav-link" href="{{ url('inscripcionesporestudiante') }}" >
+                  <i class="ni ni-bullet-list-67 text-blue"></i>
+
+                  <span class="nav-link-text">INSCRIPCION POR ESTUDIANTE</span>
+                </a>
+              </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('estudiantes') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
 
