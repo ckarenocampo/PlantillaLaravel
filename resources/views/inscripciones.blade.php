@@ -21,8 +21,8 @@
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Reportes</li>
                     <li class="breadcrumb-item active"><a href="{{url('/inscripciones')}}">Inscripciones</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Default</li>
                   </ol>
                 </nav>
               </div>
@@ -51,12 +51,7 @@
 
             <div class="table-responsive pt-2 pb-2">
                 <table id="example" class="table table-striped display nowrap" >
-                    <thead>
-                        <tr>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </thead>
+
               </table>
             </div>
           </div>
@@ -119,6 +114,7 @@
 
 
             $('#example').DataTable( {
+                orderCellsTop: true,
                 dom: 'Bfrtip',
                 buttons:[
                         'copy', 'csv', 'excel', 'pdf', 'print',
@@ -132,15 +128,19 @@
                //var firstHeaderRow = $('table').find('thead').eq(0);
               //  firstHeaderRow.clone().insertBefore( firstHeaderRow );
 
+              $('#example thead tr').clone(true).appendTo( '#example thead' );
+             /*       $('#example thead tr:eq(1) th').each( function (i) {
+                        $(this).html( '<select><option value=""></option></select>' );
+
+
+                    } );
+*/
 
                 this.api().columns().every( function () {
 
                     var column = this;
-
-
-
                     var select = $('<select><option value=""></option></select>')
-                        .appendTo( $('table').find('thead').eq(0).eq(column.index()) )
+                        .appendTo( $('#example thead tr:eq(1) th').eq(column.index()).empty())
                         .on( 'change', function () {
                             var val = $.fn.dataTable.util.escapeRegex(
                                 $(this).val()
@@ -163,6 +163,8 @@
 
 
         });
+
+
    });
     </script>
   </body>
