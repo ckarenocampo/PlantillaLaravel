@@ -15,13 +15,13 @@
             <li class="nav-item">
               <a class="nav-link " href="{{ url('/admin') }}" >
                 <i class="ni ni-tv-2 text-blue"></i>
-                <span class="nav-link-text">Dashboard</span>
+                <span class="nav-link-text">Principal</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ url('/perfil') }}" class="nav-link"  >
                 <i class="ni ni-single-02 text-blue"></i>
-                <span class="nav-link-text">Mi cuenta</span>
+                <span class="nav-link-text">Mi perfil</span>
               </a>
             </li>
 

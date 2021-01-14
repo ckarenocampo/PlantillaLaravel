@@ -3482,7 +3482,7 @@ $jscomp.polyfill(
             sInfoPostFix: "",
             sDecimal: "",
             sThousands: ",",
-            sLengthMenu: "Show _MENU_ entries",
+            sLengthMenu: "Mostrar _MENU_ entradas",
             sLoadingRecords: "Loading...",
             sProcessing: "Processing...",
             sSearch: "Buscar:",

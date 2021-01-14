@@ -21,7 +21,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Perfil</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item active" aria-current="page">Contraseña</li>
                 </ol>
               </nav>
             </div>
@@ -32,7 +32,7 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
-      
+
         <div class="col-xl-6">
           <div class="card">
           @if(Session::has('message_success'))
@@ -57,7 +57,7 @@
             </div>
 
             <div class="card-body">
-              <form method="post" action="{{url('/perfil')}}"> @csrf 
+              <form method="post" action="{{url('/perfil')}}"> @csrf
               <div id="passContainer pl-6 mr-0" >
                   <div class="row">
                       <div class="col">

@@ -26,11 +26,11 @@
                   </ol>
                 </nav>
               </div>
-              <div class="col-lg-6 col-5 text-right">
+              <!--<div class="col-lg-6 col-5 text-right">
                 @if(session('rol')=='1')
                   <a href="#"   class="btn btn-sm btn-neutral">Filters</a>
                 @endif
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
             <!-- Light table -->
 
 
-            <div class="table-responsive pt-2 pb-2">
+            <div id="test" class="table-responsive pt-2 pb-2" style="height:30rem">
 
                 <table id="example" class="table table-striped display nowrap" >
               </table>
@@ -76,7 +76,6 @@
       <!--<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>-->
 
 
-
       <script src="{{(' js/jquery.dataTables.js ')}}"></script>
 
       <script src="{{(' js/dataTables.buttons.js ')}}"></script>
@@ -91,19 +90,29 @@
       <link rel="stylesheet" href="{{('css/jquery.dataTables.css')}}">
       <link rel="stylesheet" href="{{('css/buttons.dataTables.css')}}">
 
+     <!--LOADING-->
+     <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
+
+
+
    <script>
 
 function getData(cb_func) {
         $.ajax({
         url: "{{url('/datosEstudiantes')}}",
       //  url: "{{url('/estudiantesInscritos')}}",
-
-
         success: cb_func
         });
     }
 
    $(document).ready(function() {
+
+    $("#test").busyLoad("show", {
+        text: "Cargando ...",
+        spinner: "accordion",
+        fontSize: "2rem",
+    });
         getData(function( data ) {
             var columns = [];
             data = data;
@@ -113,8 +122,8 @@ function getData(cb_func) {
         }
 
             $('#example').DataTable( {
-
                 dom: 'Blfrtip',
+                "pageLength": 50,
                 buttons:[
                         'copy', 'csv', 'excel', 'pdf', 'print'
                         ],
@@ -122,11 +131,13 @@ function getData(cb_func) {
                 columns: columns,
 
                 initComplete: function () {
+                    $('#example thead tr').clone(true).appendTo( '#example thead' );
+
                     this.api().columns().every( function () {
                         var column = this;
 
                         var select = $('</br><select><option value=""></option></select>')
-                            .appendTo( $(column.header()) )
+                        .appendTo( $('#example thead tr:eq(1) th').eq(column.index()).empty())
                             .on( 'change', function () {
                                 var val = $.fn.dataTable.util.escapeRegex(
                                     $(this).val()
@@ -144,6 +155,9 @@ function getData(cb_func) {
                 }
 
             });
+            var element = document.getElementById("test");
+            element.removeAttribute("style");
+            $("#test").busyLoad("hide");
 
         });
     });
