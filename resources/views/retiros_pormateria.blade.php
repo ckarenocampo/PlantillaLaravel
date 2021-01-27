@@ -17,12 +17,12 @@
           <div class="header-body">
             <div class="row align-items-center py-2">
               <div class="col-lg-10 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Aprobados por ciclo</h6>
+                <h6 class="h2 text-white d-inline-block mb-0">Inscripciones por alumno</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Reportes</li>
-                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Aprobados por ciclo </a></li>
+                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Inscripciones por alumno </a></li>
                   </ol>
                 </nav>
               </div>
@@ -94,13 +94,15 @@
       <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
 
-      <script src=" https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
+
 
    <script>
 
 function getData(cb_func) {
         $.ajax({
         url: "{{url('/estudiantesInscritos')}}",
+
+
         success: cb_func
         });
     }
@@ -126,28 +128,7 @@ function getData(cb_func) {
                         'copy', 'csv', 'excel', 'pdf', 'print'
                         ],
                 data: data,
-
-                columns: [
-                    {'data' : 'IDExpediente' , 'title' : 'Expediente'},
-                    { "data": function (data, type, dataToSet) {
-                        return data.PrimerNombre + " " + data.SegundoNombre + " " + data.PrimerApellido + " " + data.SegundoApellido ;
-                    }, 'title' : 'Nombre'},
-                    {'data' : 'Genero', 'title' : 'Genero'},
-                    {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
-                    { "data": function (data, type, dataToSet) {
-
-                        var cadena = data.FechaNacimiento ;
-                        cadena = cadena.substr(0,4);
-                        //obtener el year actual
-                        var today = new Date();
-                        var date = today.getFullYear();
-                        return date- cadena;
-                    }, 'title' : 'Edad'},
-                    {'data' : 'IdCarrera', 'title' : 'Carrera'},
-                    {'data' : 'TipoIngreso', 'title' : 'Tipo Ingreso'},
-                    {'data' : 'Ciclo' , 'title' : 'Ciclo' },
-                    {'data' : 'Resultado' , 'title' : 'Resultado' }
-                ],
+                columns: columns,
 
                 initComplete: function () {
                     $('#example thead tr').clone(true).appendTo( '#example thead' );

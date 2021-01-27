@@ -28,6 +28,8 @@
     Route::get('inscripcionesporestudiante','PagesController@inscripcionesporestudiante');
     Route::get('estudiantesporciclo','PagesController@estudiantesporciclo');
     Route::get('aprobadosporciclo','PagesController@aprobadosporciclo');
+    Route::get('inscripcionespormateria','PagesController@inscripcionespormateria');
+    Route::get('retirospormateria','PagesController@retirospormateria');
 
 
 
