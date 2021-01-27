@@ -68,10 +68,19 @@ class PagesController extends Controller
         return view('/perfil',compact('usuarios'));
 
     }
+    public function estudiantes(Request $request){
+        return view('/estudiantes');
+    }
     public function inscripciones(Request $request){
         return view('/inscripciones');
     }
     public function inscripcionesporestudiante(Request $request){
         return view('/estudiantes_inscritos');
+    }
+    public function estudiantesporciclo(Request $request){
+        return view('/estudiantes_porciclo');
+    }
+    public function aprobadosporciclo(Request $request){
+        return view('/aprobados_porciclo');
     }
 }

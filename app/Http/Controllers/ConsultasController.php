@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 class ConsultasController extends Controller
 {
     //
+    public function datosEstudiantes(){
+        $estudiantes = file_get_contents("https://uso-vistas-proyectos.herokuapp.com/vistas/estudiantes");
+        $arrayEstudiantes = json_decode($estudiantes,true);
+        return $arrayEstudiantes;
+    }
 
     public function datosInscripcion(){
         $inscripcion = file_get_contents("https://uso-vistas-proyectos.herokuapp.com/vistas/inscripciones");
         $arrayInscripcion = json_decode($inscripcion,true);
         return $arrayInscripcion;
-    }
-    public function datosEstudiantes(){
-        $estudiantes = file_get_contents("https://uso-vistas-proyectos.herokuapp.com/vistas/estudiantes");
-        $arrayEstudiantes = json_decode($estudiantes,true);
-        return $arrayEstudiantes;
     }
 
     public function estudiantesInscritos(){
@@ -34,9 +34,9 @@ class ConsultasController extends Controller
                     array_push($arrayEstudiantesInscritos, array_merge($inscri,$estud));
                 }
             }
-
         }
         return $arrayEstudiantesInscritos;
     }
+
 
 }

@@ -13,6 +13,8 @@ class CreateInscripcionesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('inscripciones');
+
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('IDInscripcion');
             $table->string('IDGrupo');

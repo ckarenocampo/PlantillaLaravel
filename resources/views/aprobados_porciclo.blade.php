@@ -16,17 +16,17 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-6 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Estudiantes</h6>
+              <div class="col-lg-10 col-7">
+                <h6 class="h2 text-white d-inline-block mb-0">Inscripciones por alumno</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Reportes</li>
-                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Estudiantes</a></li>
+                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Inscripciones por alumno </a></li>
                   </ol>
                 </nav>
               </div>
-              <!--<div class="col-lg-6 col-5 text-right">
+             <!-- <div class="col-lg-2 col-5 text-right">
                 @if(session('rol')=='1')
                   <a href="#"   class="btn btn-sm btn-neutral">Filters</a>
                 @endif
@@ -69,12 +69,12 @@
       <script src="{{(' vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js ')}}"></script>
       <!-- Argon JS -->
       <script src="{{(' js/argon.js?v=1.2.0 ')}}"></script>
-     <!-- DATATABLES JS -->
 
+     <!-- DATATABLES JS -->
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
-      <!--<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>-->
 
+      <!--<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>-->
 
       <script src="{{(' js/jquery.dataTables.js ')}}"></script>
 
@@ -90,33 +90,31 @@
       <link rel="stylesheet" href="{{('css/jquery.dataTables.css')}}">
       <link rel="stylesheet" href="{{('css/buttons.dataTables.css')}}">
 
-     <!--LOADING-->
-     <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
-     <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
+      <!--LOADING-->
+      <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
 
-
+      <script src=" https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
 
    <script>
 
 function getData(cb_func) {
         $.ajax({
-        url: "{{url('/datosEstudiantes')}}",
-        //url: "{{url('/estudiantesporCiclo')}}",
+        url: "{{url('/estudiantesInscritos')}}",
         success: cb_func
         });
     }
 
    $(document).ready(function() {
-
-    $("#test").busyLoad("show", {
-        text: "Cargando ...",
-        spinner: "accordion",
-        fontSize: "2rem",
-    });
+        $("#test").busyLoad("show", {
+            text: "Cargando ...",
+            spinner: "accordion",
+            fontSize: "2rem",
+        });
         getData(function( data ) {
             var columns = [];
             data = data;
-            columnNames = Object.keys(data.datos[0]);
+            columnNames = Object.keys(data[0]);
             for (var i in columnNames) {
             columns.push({data: columnNames[i], title: columnNames[i]});
         }
@@ -127,13 +125,35 @@ function getData(cb_func) {
                 buttons:[
                         'copy', 'csv', 'excel', 'pdf', 'print'
                         ],
-                data: data.datos,
-                columns: columns,
+                data: data,
 
+                columns: [
+                    {'data' : 'IDExpediente' , 'title' : 'Expediente'},
+                    { "data": function (data, type, dataToSet) {
+                        return data.PrimerNombre + " " + data.SegundoNombre + " " + data.PrimerApellido + " " + data.SegundoApellido ;
+                    }, 'title' : 'Nombre'},
+                    {'data' : 'Genero', 'title' : 'Genero'},
+                    {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
+                    { "data": function (data, type, dataToSet) {
+
+                        var cadena = data.FechaNacimiento ;
+                        cadena = cadena.substr(0,4);
+                        //obtener el year actual
+                        var today = new Date();
+                        var date = today.getFullYear();
+                        return date- cadena;
+                    }, 'title' : 'Edad'},
+                    {'data' : 'IdCarrera', 'title' : 'Carrera'},
+                    {'data' : 'TipoIngreso', 'title' : 'Tipo Ingreso'},
+                    {'data' : 'Ciclo' , 'title' : 'Ciclo' }
+                    {'data' : 'Resultado' , 'title' : 'Resultado' }
+                ],
+                ,
                 initComplete: function () {
                     $('#example thead tr').clone(true).appendTo( '#example thead' );
 
                     this.api().columns().every( function () {
+
                         var column = this;
 
                         var select = $('</br><select><option value=""></option></select>')

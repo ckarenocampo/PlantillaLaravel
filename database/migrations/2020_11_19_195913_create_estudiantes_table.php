@@ -12,7 +12,8 @@ class CreateEstudiantesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {        Schema::dropIfExists('estudiantes');
+
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->increments('IDExpediente');
             $table->string('CodigoEstudiante');

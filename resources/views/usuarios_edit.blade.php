@@ -52,7 +52,7 @@
           </div>
           <div class="card-body">
             <form method="post" id="formEdit" name="formEdit"  action="{{url('/usuarios/'.$usuarios['id'])}}" enctype="multipart/form-data" role="form">
-                
+
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
@@ -75,13 +75,13 @@
                   </div>
                 </div>
 
-                <div class="form-group">                  
+                <div class="form-group">
                   <label class="form-control-label" for="input-rol">Rol del usuario</label>
                   <div class="input-group input-group-merge input-group-alternative">
                   <select class="form-control" name="rol_id">
                   @foreach($roles as $rol)
                   <option value="{{$rol['id']}}"  {{ $usuarios['rol_id'] == $rol['id'] ? 'selected="selected"' : '' }}>{{$rol['name_rol']}}</option>
-                  @endforeach 
+                  @endforeach
                   </select>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-address">Repetir contraseña nueva</label> 
+                          <label class="form-control-label" for="input-address">Repetir contraseña nueva</label>
                           <input class="form-control" disabled="true" type="password" name="password-confirmation"  id="password-confirmation" required>
                         </div>
                       </div>
@@ -151,32 +151,32 @@
   <!-- Check si deseo cambiar password-->
   <script>
     function myFunction() {
-        var checker = document.getElementById('checkPass'); 
-        var passActual = document.getElementById('password-actual'); 
-        var passNew = document.getElementById('password'); 
-        var passConf = document.getElementById('password-confirmation'); 
-  
-        // when unchecked or checked, run the function 
-        checker.onchange = function(){ 
-          if(this.checked){ 
-            passActual.disabled = false; 
-            passNew.disabled = false; 
-            passConf.disabled = false; 
+        var checker = document.getElementById('checkPass');
+        var passActual = document.getElementById('password-actual');
+        var passNew = document.getElementById('password');
+        var passConf = document.getElementById('password-confirmation');
+
+        // when unchecked or checked, run the function
+        checker.onchange = function(){
+          if(this.checked){
+            passActual.disabled = false;
+            passNew.disabled = false;
+            passConf.disabled = false;
           }
-          else { 
-            passActual.disabled = true; 
-            passNew.disabled = true; 
-            passConf.disabled = true; 
-            passActual.value = ""; 
-            passNew.value = ""; 
+          else {
+            passActual.disabled = true;
+            passNew.disabled = true;
+            passConf.disabled = true;
+            passActual.value = "";
+            passNew.value = "";
             passConf.value = "";
-          } 
-        } 
+          }
+        }
     }
     </script>
   <!-- JQuery Match Passwords -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script> 
+  <script>
     function checkPasswordMatch() {
       var password = $("#password").val();
       var confirmPassword = $("#password-confirmation").val();
@@ -191,7 +191,7 @@
         $('#submitPass').attr("disabled", false);
 
       }
-          
+
     }
     $(document).ready(function () {
       $("#password-confirmation").keyup(checkPasswordMatch);

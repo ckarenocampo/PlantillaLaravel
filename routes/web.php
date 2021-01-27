@@ -14,22 +14,23 @@
 //Route::get('/','PagesController@welcome');
 //Route::get('registro','PagesController@registro');
 
-Route::match(['get','post'],'/','PagesController@login_admin');
+    Route::match(['get','post'],'/','PagesController@login_admin');
 
-Route::group(['middleware'=>['auth']],function(){
+    Route::group(['middleware'=>['auth']],function(){
     Route::get('admin','PagesController@admin');
     Route::match(['get','post'],'perfil','PagesController@perfil');
     Route::get('usuarios_agregar','UsuariosController@usuarios_agregar');
-   // Route::match(['get','post'],'editPass','UsuariosController@editPass');
     Route::resource('usuarios','UsuariosController');
     Route::get('data', 'UsuariosController@data');
 
+    Route::get('estudiantes','PagesController@estudiantes');
     Route::get('inscripciones','PagesController@inscripciones');
     Route::get('inscripcionesporestudiante','PagesController@inscripcionesporestudiante');
+    Route::get('estudiantesporciclo','PagesController@estudiantesporciclo');
+    Route::get('aprobadosporciclo','PagesController@aprobadosporciclo');
 
 
-    Route::resource('estudiantes','EstudiantesController');
-    Route::get('dataEstudiante', 'EstudiantesController@dataEstudiante');
+
 
     Route::get('datosEstudiantes', 'ConsultasController@datosEstudiantes');
     Route::get('datosInscripcion', 'ConsultasController@datosInscripcion');
@@ -37,7 +38,6 @@ Route::group(['middleware'=>['auth']],function(){
 
 
 
-    //Route::get('usuarios/data',['as' => 'usuarios.data', 'uses' => 'UsuariosController@data']);
 });
 
 Route::get('logout','PagesController@logout');
