@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
         $user->password = Hash::make('admin');
         $user->rol_id = $role_admin->id;
         $user->save();
-        $user->roles()->attach($role_admin->id);
+        //$user->roles()->attach($role_admin->id);
 
         $user = new \App\User();
         $user->name = "Usuario";
@@ -32,7 +32,7 @@ class UserTableSeeder extends Seeder
         $user->password = Hash::make('user');
         $user->rol_id = $role_user->id;
         $user->save();
-        $user->roles()->attach($role_user->id);
+       // $user->roles()->attach($role_user->id);
 
         
     }

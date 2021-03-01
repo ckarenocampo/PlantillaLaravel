@@ -16,7 +16,7 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-6 col-7">
+              <div class="col-lg-6">
                 <h6 class="h2 text-white d-inline-block mb-0">Usuarios</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -25,17 +25,19 @@
                   </ol>
                 </nav>
               </div>
-             <!-- <div class="col-lg-6 col-5 text-right">
+              <div class="col-lg-6 col-5 text-right">
                 @if(session('rol')=='1')
                   <a href="{{url('/usuarios_agregar')}}" class="btn btn-sm btn-neutral">Agregar</a>
-                  <a href="#"   class="btn btn-sm btn-neutral">Filters</a>
                 @endif
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
       </div>
         <!-- Page content -->
+        <?php
+          include("views_usuarios.php");
+        ?>
         <br />
         <div class="container-fluid mt--7">
           <div class="card  " >
@@ -143,7 +145,7 @@
         dom: 'Blfrtip',
         "pageLength": 50,
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+             'excel', 'pdf', 'print'
         ]
     } );
     var element = document.getElementById("test");

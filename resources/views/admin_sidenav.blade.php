@@ -29,10 +29,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('usuarios') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">CRUD USUARIOS</span>
+                  <span class="nav-link-text">USUARIOS</span>
                 </a>
               </li>
             @endif
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('estudiantes') }}" >
+                <i class="ni ni-bullet-list-67 text-blue"></i>
+                <span class="nav-link-text">ESTUDIANTES</span>
+              </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('inscripciones') }}" >
@@ -40,66 +47,28 @@
                   <span class="nav-link-text">INSCRIPCIONES</span>
                 </a>
               </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('estudiantes') }}" >
-                  <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">ESTUDIANTES</span>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('estudiantesporciclo') }}" >
-                  <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">Estudiantes por ciclo</span>
-                </a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('aprobadosporciclo') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">Aprobados por ciclo</span>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('') }}" >
-                  <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">Aprobados por materia</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('inscripcionesporestudiante') }}" >
+                <a class="nav-link" href="{{ url('inscripcionesporciclo') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">Inscripciones por ciclo</span>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('') }}" >
-                  <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">Inscripciones por materia</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('') }}" >
+                <a class="nav-link" href="{{ url('retirospormateria') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
                   <span class="nav-link-text">Retiros por materia</span>
                 </a>
               </li>
-<!--            <li class="nav-item nav-with-child">
-                <a class="nav-link"  >
-                  <i class="ni ni-align-left-2"></i> Multilevel
-                </a>
-                <ul class="nav-item-child">
-                  <li class="nav-item">
-                    <a class="nav-link" href="">
-                   Multilevel 1
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="">
-                   Multilevel 2
-                    </a>
-                  </li>
-                </ul>
-            </li> -->
+
 
           </ul>
           </ul>

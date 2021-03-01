@@ -87,18 +87,14 @@
                   <div class="input-group input-group-merge input-group-alternative">
                   <select class="form-control" name="rol_id" id="rol_id">
                   @foreach($roles as $roles)
-                  <option value="{{$roles['id']}}">{{$roles['name_rol']}}</option>
-
+                    <option value="{{$roles['id']}}">{{$roles['name_rol']}}</option>
                   @endforeach
-                  <!--
-                  <option value="1">Administrador</option>
-                  <option value="2">Usuario</option> -->
                   </select>
                   </div>
                 </div>
 
                 <div class=" text-center">
-                  <button type="submit"  class="btn btn-primary mt-4">Agregar</button>
+                  <button type="submit"  class="btn btn-primary mt-4">Guardar</button>
                 </div>
               </form>
             </div>

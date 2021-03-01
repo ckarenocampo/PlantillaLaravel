@@ -16,7 +16,7 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-6 col-7">
+              <div class="col-lg-6">
                 <h6 class="h2 text-white d-inline-block mb-0">Inscripciones</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -36,6 +36,9 @@
         </div>
       </div>
         <!-- Page content -->
+        <?php
+        include("views_inscripciones.php");
+        ?>
         <br />
         <div class="container-fluid mt--7">
           <div class="card  " >
@@ -100,7 +103,8 @@
 
     function getData(cb_func) {
         $.ajax({
-        url: "{{url('/datosInscripcion')}}",
+        //url: "{{url('/datosInscripcion')}}",
+        url: "inscripciones.txt",
         success: cb_func
         });
     }
@@ -130,7 +134,7 @@
                 dom: 'Blfrtip',
                 "pageLength": 50,
                 buttons:[
-                        'copy', 'csv', 'excel', 'pdf', 'print',
+                        'excel', 'pdf', 'print',
                         ],
             data: data.datos,
             columns: columns,

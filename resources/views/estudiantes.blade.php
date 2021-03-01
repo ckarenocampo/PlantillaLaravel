@@ -16,7 +16,7 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-6 col-7">
+              <div class="col-lg-6 ">
                 <h6 class="h2 text-white d-inline-block mb-0">Estudiantes</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -36,6 +36,9 @@
         </div>
       </div>
         <!-- Page content -->
+        <?php
+            include("views_estudiantes.php");
+        ?>
         <br />
         <div class="container-fluid mt--7">
           <div class="card  " >
@@ -100,8 +103,8 @@
 
 function getData(cb_func) {
         $.ajax({
-        url: "{{url('/datosEstudiantes')}}",
-        //url: "{{url('/estudiantesporCiclo')}}",
+        //url: "{{url('/datosEstudiantes')}}",
+        url: "estudiantes.txt",
         success: cb_func
         });
     }
@@ -125,10 +128,41 @@ function getData(cb_func) {
                 dom: 'Blfrtip',
                 "pageLength": 50,
                 buttons:[
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                         'excel', 'pdf', 'print'
                         ],
                 data: data.datos,
-                columns: columns,
+                columns: 
+                [
+                  {'data' : 'CodigoEstudiante', 'title' : 'Codigo'},
+                  { "data": function (data, type, dataToSet) {
+                      return data.PrimerApellido + " " + data.SegundoApellido + " " + data.PrimerNombre + " " + data.SegundoNombre;
+                  }, 'title' : 'Nombre'},
+                  {'data' : 'Genero', 'title' : 'Genero' },
+                  {'data' : 'IdCarrera', 'title' : 'IDCarrera'},
+                  {'data' : 'EstadoCivil', 'title' : 'Estadocivil'},
+                  {'data' : 'PlanVersion', 'title' : 'PlanVersion'},
+                  {"data": function (data, type, dataToSet){
+                      var cadena = data.FechaIngreso ;
+                      cadena = cadena.substr(0,10);
+                      return cadena;
+                    }, 'title' : 'FechaIngreso'},
+                  {'data' : 'PeriodoIngreso', 'title' : 'PeriodoIngreso'},
+                  {'data' : 'TipoIngreso', 'title' : 'TipoIngreso'},
+                  {'data' : 'Cum' , 'title' : 'Cum' },
+                  {"data": function (data, type, dataToSet){
+                      var cadena = data.FechaNacimiento ;
+                      cadena = cadena.substr(0,10);
+                      return cadena;
+                    }, 'title' : 'FechaNac'},
+                    { "data": function (data, type, dataToSet) {
+                        var cadena = data.FechaNacimiento ;
+                        cadena = cadena.substr(0,4);
+                        //obtener el year actual
+                        var today = new Date();
+                        var date = today.getFullYear();
+                        return date- cadena;
+                    }, 'title' : 'Edad'}
+                ],
 
                 initComplete: function () {
                     $('#example thead tr').clone(true).appendTo( '#example thead' );

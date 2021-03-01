@@ -384,7 +384,7 @@
                             if (!0 === b.createEmptyCells) k[l] = "";
                             else continue;
                         var H = k[l];
-                        k[l] = k[l].trim();
+                        k[l] = "function" === typeof k[l].trim ? k[l].trim() : k[l];
                         for (var N = 0, W = U.length; N < W; N++) {
                             var L = U[N];
                             if (k[l].match && !k[l].match(/^0\d+/) && k[l].match(L.match)) {

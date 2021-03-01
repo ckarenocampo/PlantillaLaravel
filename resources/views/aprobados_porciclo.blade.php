@@ -16,7 +16,7 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-10 col-7">
+              <div class="col-lg-10">
                 <h6 class="h2 text-white d-inline-block mb-0">Aprobados por ciclo</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -36,6 +36,9 @@
         </div>
       </div>
         <!-- Page content -->
+        <?php
+        include("views_aprobadosporciclo.php");
+        ?>
         <br />
         <div class="container-fluid mt--7">
           <div class="card  " >
@@ -100,7 +103,9 @@
 
 function getData(cb_func) {
         $.ajax({
-        url: "{{url('/estudiantesInscritos')}}",
+        //url: "{{url('/estudiantesInscritos')}}",
+        url: "estudiantesinscritos.txt",
+
         success: cb_func
         });
     }
@@ -123,19 +128,20 @@ function getData(cb_func) {
                 dom: 'Blfrtip',
                 "pageLength": 50,
                 buttons:[
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        'excel', 'pdf', 'print'
                         ],
                 data: data,
 
                 columns: [
-                    {'data' : 'IDExpediente' , 'title' : 'Expediente'},
+                  { "data": function (data, type, dataToSet) {
+                      return data.PrimerApellido + " " + data.SegundoApellido + " " + data.PrimerNombre + " " + data.SegundoNombre;
+                  }, 'title' : 'Nombre'},
+                  {"data": function (data, type, dataToSet){
+                      var cadena = data.FechaNacimiento ;
+                      cadena = cadena.substr(0,10);
+                      return cadena;
+                    }, 'title' : 'FechaNac'},
                     { "data": function (data, type, dataToSet) {
-                        return data.PrimerNombre + " " + data.SegundoNombre + " " + data.PrimerApellido + " " + data.SegundoApellido ;
-                    }, 'title' : 'Nombre'},
-                    {'data' : 'Genero', 'title' : 'Genero'},
-                    {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
-                    { "data": function (data, type, dataToSet) {
-
                         var cadena = data.FechaNacimiento ;
                         cadena = cadena.substr(0,4);
                         //obtener el year actual
@@ -143,12 +149,17 @@ function getData(cb_func) {
                         var date = today.getFullYear();
                         return date- cadena;
                     }, 'title' : 'Edad'},
+                    {'data' : 'CodigoEstudiante' , 'title' : 'CodigoEstudiante'},
+                    {'data' : 'Genero', 'title' : 'Genero'},
                     {'data' : 'IdCarrera', 'title' : 'Carrera'},
                     {'data' : 'TipoIngreso', 'title' : 'Tipo Ingreso'},
+                    {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
                     {'data' : 'Ciclo' , 'title' : 'Ciclo' },
-                    {'data' : 'Resultado' , 'title' : 'Resultado' }
-                ],
+                    {'data' : 'Resultado' , 'title' : 'Resultado' },
+                    {'data' : 'Cum', 'title' : 'Cum'}
 
+                ],
+                rowsGroup: [0,1,2,3,4,5,6],
                 initComplete: function () {
                     $('#example thead tr').clone(true).appendTo( '#example thead' );
 

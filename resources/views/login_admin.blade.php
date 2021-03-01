@@ -75,9 +75,6 @@
           <div class="row mt-3">
             <div class="col-6">
             </div>
-            <div class="col-6 text-right">
-              <a href="{{ url('/register_admin') }}" class="text-light"><small>Registrarse</small></a>
-            </div>
           </div>
         </div>
       </div>

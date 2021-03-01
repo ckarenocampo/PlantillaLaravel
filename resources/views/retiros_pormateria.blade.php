@@ -16,13 +16,13 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-10 col-7">
-                <h6 class="h2 text-white d-inline-block mb-0">Inscripciones por alumno</h6>
+              <div class="col-lg-10">
+                <h6 class="h2 text-white d-inline-block mb-0">Retiros por materia</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Reportes</li>
-                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Inscripciones por alumno </a></li>
+                    <li class="breadcrumb-item active"><a href="{{url('/estudiantes')}}">Retiros por materia </a></li>
                   </ol>
                 </nav>
               </div>
@@ -36,6 +36,9 @@
         </div>
       </div>
         <!-- Page content -->
+        <?php
+        include("views_retirospormateria.php");
+        ?>
         <br />
         <div class="container-fluid mt--7">
           <div class="card  " >
@@ -94,13 +97,15 @@
       <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
 
+      <script src=" https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
 
 
    <script>
 
 function getData(cb_func) {
         $.ajax({
-        url: "{{url('/estudiantesInscritos')}}",
+       // url: "{{url('/estudiantesInscritos')}}",
+        url: "estudiantesinscritos.txt",
 
 
         success: cb_func
@@ -125,10 +130,42 @@ function getData(cb_func) {
                 dom: 'Blfrtip',
                 "pageLength": 50,
                 buttons:[
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                         'excel', 'pdf', 'print'
                         ],
                 data: data,
-                columns: columns,
+                columns: [
+                  { "data": function (data, type, dataToSet) {
+                      return data.PrimerApellido + " " + data.SegundoApellido + " " + data.PrimerNombre + " " + data.SegundoNombre;
+                  }, 'title' : 'Nombre'},
+                  {"data": function (data, type, dataToSet){
+                      var cadena = data.FechaNacimiento ;
+                      cadena = cadena.substr(0,10);
+                      return cadena;
+                    }, 'title' : 'FechaNac'},
+                    { "data": function (data, type, dataToSet) {
+                        var cadena = data.FechaNacimiento ;
+                        cadena = cadena.substr(0,4);
+                        //obtener el year actual
+                        var today = new Date();
+                        var date = today.getFullYear();
+                        return date- cadena;
+                    }, 'title' : 'Edad'},
+                    {'data' : 'CodigoEstudiante' , 'title' : 'CodigoEstudiante'},
+                    {'data' : 'Genero', 'title' : 'Genero'},
+                    {'data' : 'IdCarrera', 'title' : 'Carrera'},
+                    {'data' : 'TipoIngreso', 'title' : 'Tipo Ingreso'},
+                  
+                    {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
+                    {'data' : 'NombreDocente' , 'title' : 'NombreDocente'},
+                    {'data' : 'Grupo' , 'title' : 'Grupo'},
+                    {'data' : 'Ciclo' , 'title' : 'Ciclo' },
+                    {'data' : 'Retirada' , 'title' : 'Retirada'},
+                    {'data' : 'Dia' , 'title' : 'Dia'},
+                    {'data' : 'Turno' , 'title' : 'Turno'},
+                    {'data' : 'Horario' , 'title' : 'Horario'}
+                   
+                ],
+                rowsGroup: [0,1,2,3,4,5,6],
 
                 initComplete: function () {
                     $('#example thead tr').clone(true).appendTo( '#example thead' );

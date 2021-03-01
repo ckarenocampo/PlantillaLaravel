@@ -16,7 +16,7 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-2">
-              <div class="col-lg-10 col-7">
+              <div class="col-lg-10">
                 <h6 class="h2 text-white d-inline-block mb-0">Inscripciones por alumno</h6>
                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -125,7 +125,7 @@ function getData(cb_func) {
                 dom: 'Blfrtip',
                 "pageLength": 50,
                 buttons:[
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        'excel', 'pdf', 'print'
                         ],
                 data: data,
                 columns: columns,

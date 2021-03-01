@@ -1,9 +1,9 @@
 <!-- Footer -->
 <footer class="pt-0 mt-2">
-  <div class="container">
+
     <div class="row align-items-center justify-content-lg-between">
       <div class="col-lg-6">
-        <div class="copyright text-left text-lg-left text-muted">
+        <div class="copyright text-center text-lg-left text-muted">
           &copy; 2020 <a href="https://www.usonsonate.edu.sv/" class=" text-white font-weight-normal ml-1" target="_blank">Universidad de Sonsonate</a>
         </div>
       </div>
@@ -21,5 +21,5 @@
         </ul>
       </div>
     </div>
-  </div>
+
 </footer>

@@ -12,18 +12,7 @@ class UsuariosController extends Controller
     public function index(Request $request)
     {
         $usuarios=\App\User::all();
-        //$usuarios = DB::table('users') ->select('id','name','email')->get();
-
-        //$usuarios = json_encode($usuarios);
-        //echo $users['1'];
-        //dd($users);
-        //echo "<pre>"; print_r($users); die;
-        //return view('usuarios',['users' => $users]);
-        //return json_encode($users);
-
         return view('/usuarios', compact('usuarios'));
-        //return view('/usuarios');
-
 
     }
     public function data()
@@ -44,8 +33,7 @@ class UsuariosController extends Controller
         $emailre = $usuarios->email=$request->get('email');
         $correo = \App\User::where('email',$emailre)->first();
         $tam =  strlen($correo);
-        //echo $tam;
-        //echo $correo;
+
         if($tam > 1){
             return redirect('/usuarios_agregar')->with('flash_message_error','ERROR El correo ya fue registrado');
         }else{
@@ -54,8 +42,8 @@ class UsuariosController extends Controller
             $usuarios ->password= Hash::make($request->get('password'));
             $usuarios ->rol_id = $request->get('rol_id');
             $usuarios ->save();
-            $rol = $usuarios ->rol_id;
-            $usuarios->roles()->attach($rol);
+            //$rol = $usuarios ->rol_id;
+            //$usuarios->roles()->attach($rol);
             return redirect('/usuarios')->with('success', 'Informacion agregada exitosamente');
         }
     }

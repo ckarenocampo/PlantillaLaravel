@@ -17,7 +17,7 @@
     Route::match(['get','post'],'/','PagesController@login_admin');
 
     Route::group(['middleware'=>['auth']],function(){
-    Route::get('admin','PagesController@admin');
+    //Route::get('admin','PagesController@admin');
     Route::match(['get','post'],'perfil','PagesController@perfil');
     Route::get('usuarios_agregar','UsuariosController@usuarios_agregar');
     Route::resource('usuarios','UsuariosController');
@@ -28,7 +28,7 @@
     Route::get('inscripcionesporestudiante','PagesController@inscripcionesporestudiante');
     Route::get('estudiantesporciclo','PagesController@estudiantesporciclo');
     Route::get('aprobadosporciclo','PagesController@aprobadosporciclo');
-    Route::get('inscripcionespormateria','PagesController@inscripcionespormateria');
+    Route::get('inscripcionesporciclo','PagesController@inscripcionesporciclo');
     Route::get('retirospormateria','PagesController@retirospormateria');
 
 
@@ -37,6 +37,9 @@
     Route::get('datosEstudiantes', 'ConsultasController@datosEstudiantes');
     Route::get('datosInscripcion', 'ConsultasController@datosInscripcion');
     Route::get('estudiantesInscritos', 'ConsultasController@estudiantesInscritos');
+    Route::get('admin', 'ConsultasController@Totales');
+    Route::resource('porcentaje', 'ConsultasController@porcentaje');
+
 
 
 
