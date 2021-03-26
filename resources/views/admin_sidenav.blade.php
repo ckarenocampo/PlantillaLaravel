@@ -15,7 +15,7 @@
             <li class="nav-item">
               <a class="nav-link " href="{{ url('/admin') }}" >
                 <i class="ni ni-tv-2 text-blue"></i>
-                <span class="nav-link-text">Principal</span>
+                <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">

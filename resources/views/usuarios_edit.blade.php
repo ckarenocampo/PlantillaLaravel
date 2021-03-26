@@ -36,9 +36,10 @@
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="col-xl-8 order-xl-1">
+
         <div class="card">
         @if(Session::has('message_error'))
-              <div class="alert alert-success alert-block ">
+              <div class="alert alert-danger alert-block ">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <strong>{!! session('message_error') !!}</strong>
               </div>
@@ -94,15 +95,6 @@
                 </div>
 
                 <div id="passContainer" >
-                  <div class="row">
-                      <div class="col">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-address">Contraseña actual</label>
-                            <input class="form-control"  disabled="true" type="password" name="password-actual" id="password-actual" required>
-                        </div>
-                      </div>
-                  </div>
-
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
@@ -152,22 +144,22 @@
   <script>
     function myFunction() {
         var checker = document.getElementById('checkPass');
-        var passActual = document.getElementById('password-actual');
+        //var passActual = document.getElementById('password-actual');
         var passNew = document.getElementById('password');
         var passConf = document.getElementById('password-confirmation');
 
         // when unchecked or checked, run the function
         checker.onchange = function(){
           if(this.checked){
-            passActual.disabled = false;
+           // passActual.disabled = false;
             passNew.disabled = false;
             passConf.disabled = false;
           }
           else {
-            passActual.disabled = true;
+          //  passActual.disabled = true;
             passNew.disabled = true;
             passConf.disabled = true;
-            passActual.value = "";
+           // passActual.value = "";
             passNew.value = "";
             passConf.value = "";
           }

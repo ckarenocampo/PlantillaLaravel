@@ -41,13 +41,13 @@
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
+                        <i class="ni ni-single-02"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> %645</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$cont['porcEst']}} %</span>
+                   <!-- <span class="text-nowrap">Since last month</span>-->
                   </p>
                 </div>
               </div>
@@ -58,18 +58,18 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total inscritos</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0 ">Inscritos Ciclo 02/04</h5>
                       <span id="countInscritos" class="h2 font-weight-bold mb-0">{{$cont['inscritos']}}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
+                        <i class="ni ni-badge"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$cont['porcInscri']}} %  </span>
+
                   </p>
                 </div>
               </div>
@@ -85,13 +85,13 @@
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
-                        <i class="ni ni-chart-pie-35"></i>
+                        <i class="ni ni-chart-bar-32"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$cont['porcMas']}} %</span>
+
                   </p>
                 </div>
               </div>
@@ -112,8 +112,8 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$cont['porcFem']}} %</span>
+                    
                   </p>
                 </div>
               </div>
@@ -159,7 +159,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> {{ConsultasController::porcentajes('0')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('0')}} %
                     </td>
                   </tr>
                   <tr>
@@ -174,7 +174,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> {{ConsultasController::porcentajes('1')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('1')}} %
                     </td>
                   </tr>
                   <tr>
@@ -189,7 +189,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> {{ConsultasController::porcentajes('2')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('2')}} %
                     </td>
                   </tr>
                   <tr>
@@ -204,7 +204,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> {{ConsultasController::porcentajes('3')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('3')}} %
                     </td>
                   </tr>
                   <tr>
@@ -219,7 +219,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> {{ConsultasController::porcentajes('4')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('4')}} %
                     </td>
                   </tr>
                   <tr>
@@ -234,7 +234,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> {{ConsultasController::porcentajes('5')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('5')}} %
                     </td>
                   </tr>
                   <tr>
@@ -249,7 +249,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> {{ConsultasController::porcentajes('6')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('6')}} %
                     </td>
                   </tr>
                   <tr>
@@ -264,7 +264,7 @@
                       ?>
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> {{ConsultasController::porcentajes('7')}} %
+                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('7')}} %
                     </td>
                   </tr>
                 </tbody>

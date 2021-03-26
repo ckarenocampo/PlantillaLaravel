@@ -78,8 +78,21 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control"  type="password" name="password" placeholder="********" required>
+                    <input class="form-control"  type="password" name="password" id="password" required>
                   </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-control-label" for="input-address">Confirmar contraseña nueva</label>
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" type="password" name="password-confirmation"  id="password-confirmation" required >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="registrationFormAlert form-control-label" id="CheckPasswordMatch"></div>
                 </div>
 
                 <div class="form-group">                  
@@ -94,7 +107,7 @@
                 </div>
 
                 <div class=" text-center">
-                  <button type="submit"  class="btn btn-primary mt-4">Guardar</button>
+                  <button type="submit" id="submitPass"  class="btn btn-primary mt-4">Guardar</button>
                 </div>
               </form>
             </div>
@@ -114,6 +127,11 @@
   <script src="{{(' vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js ')}}"></script>
   <!-- Argon JS -->
   <script src="{{(' js/argon.js?v=1.2.0 ')}}"></script>
+    <!-- JQuery Match Passwords -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{('js/passwordsMatch.js')}}"></script>
+         <!--VIEW EYE PASSWORD JS-->
+  <script src="{{asset('js/custom.js')}}"></script>
 </body>
 
 </html>

@@ -61,11 +61,11 @@ class ConsultasController extends Controller
            '0' =>  $vistas[0] * 100 / $total,
            '1' =>  $vistas[1] * 100 / $total, 
            '2' =>  $vistas[2] * 100 / $total, 
-           '3' =>  $vistas[2] * 100 / $total, 
-           '4' =>  $vistas[2] * 100 / $total, 
-           '5' =>  $vistas[2] * 100 / $total, 
-           '6' =>  $vistas[2] * 100 / $total, 
-           '7' =>  $vistas[2] * 100 / $total
+           '3' =>  $vistas[3] * 100 / $total, 
+           '4' =>  $vistas[4] * 100 / $total, 
+           '5' =>  $vistas[5] * 100 / $total, 
+           '6' =>  $vistas[6] * 100 / $total, 
+           '7' =>  $vistas[7] * 100 / $total
         );
 
         return number_format($porcentajes[$pos], 2 ) ;
@@ -78,20 +78,34 @@ class ConsultasController extends Controller
 
 
          ///total inscritos
+         $fecha = getdate();
+         $month = $fecha['mon'];
+         $year  = $fecha['year'];
+         if($month>6){
+             $ciclo = '02';
+         }else{
+             $ciclo = '01';
+         }
+         $cicloActual = $ciclo . '/' . substr($year, 2, 2);
+
         function unique_multidim_array($array, $key) {
             $temp_array = array();
             $i = 0;
             $key_array = array();
            
             foreach($array as $val) {
-                if (!in_array($val[$key], $key_array)) {
-                    $key_array[$i] = $val[$key];
-                    $temp_array[$i] = $val;
+                if($val['Ciclo'] == '01/04'){
+                    //$cicloActual Mandar en if cuando haya informacion actualizada
+                    if (!in_array($val[$key], $key_array)) {
+                        $key_array[$i] = $val[$key];
+                        $temp_array[$i] = $val;
+                    }
+                    $i++;
                 }
-                $i++;
             }
             return $temp_array;
         }
+
         $resultInscritos = unique_multidim_array($arrayEstudiantesInscritos,'PrimerNombre');
         $numInscritos = count($resultInscritos);
         
@@ -123,12 +137,25 @@ class ConsultasController extends Controller
             } 
         }
 
+        //porcentajes
+        //Si tuvieramos datos actualizados calcular con total de INSCRITOS no
+        //totalEstudiantes
+        $porEst = $totalEstudiantes *100 / $totalEstudiantes;
+        $porIncritos = $numInscritos *100 / $totalEstudiantes;
+        $porMasc = $mas *100 / $totalEstudiantes;
+        $porFem = $fem *100 / $totalEstudiantes;
+
         $array = array(
             "inscritos" => $numInscritos,
             "estudiantes" => $totalEstudiantes,
             "retirada" => $res,
             "femenino" => $fem,
-            "masculino" => $mas
+            "masculino" => $mas,
+            "porcEst" => $porEst,
+            "porcInscri" => $porIncritos,
+            "porcMas" => $porMasc,
+            "porcFem" => $porFem
+            
         );
 
         return view('/admin')->with('cont', $array);
