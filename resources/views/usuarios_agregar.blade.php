@@ -81,6 +81,9 @@
                     <input class="form-control"  type="password" name="password" id="password" required>
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="registrationFormAlert form-control-label" id="RevPassword"></div>
+                </div>
                 
                 <div class="form-group">
                   <label class="form-control-label" for="input-address">Confirmar contraseña nueva</label>

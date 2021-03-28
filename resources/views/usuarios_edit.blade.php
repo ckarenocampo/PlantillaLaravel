@@ -36,7 +36,12 @@
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="col-xl-8 order-xl-1">
-
+        @if(Session::has('flash_message_error'))
+        <div class="alert alert-danger alert-block ">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>{!! session('flash_message_error') !!}</strong>
+        </div>
+      @endif
         <div class="card">
         @if(Session::has('message_error'))
               <div class="alert alert-danger alert-block ">
@@ -103,6 +108,12 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col">
+                      <div class="registrationFormAlert form-control-label" id="RevPassword"></div>
+                    </div>
+                  </div>
 
                     <div class="row">
                       <div class="col">
@@ -181,12 +192,27 @@
         $("#CheckPasswordMatch").html("Contraseñas coinciden");
         $("#CheckPasswordMatch").css({'color':'green'});
         $('#submitPass').attr("disabled", false);
-
       }
-
     }
+
+    function checkPasswordMax() {
+  var password = $("#password").val(); 
+
+  if (password.length < 6){
+    $("#RevPassword").html("La contraseña debe contener al menos 6 caracteres");
+    $("#RevPassword").css({'color':'red'});
+    $('#submitPass').attr("disabled", true);
+  }
+  else{
+    $("#RevPassword").html("");
+   // $('#submitPass').attr("disabled", false);
+  }      
+}
+
     $(document).ready(function () {
       $("#password-confirmation").keyup(checkPasswordMatch);
+      $("#password").keyup(checkPasswordMax);
+
     });
 </script>
 
