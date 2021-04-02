@@ -46,7 +46,7 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$cont['porcEst']}} %</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>    </span>
                    <!-- <span class="text-nowrap">Since last month</span>-->
                   </p>
                 </div>
@@ -129,10 +129,10 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="card">
-            <div class="card-header border-0">
+            <div class="card-header border-0 align-items-center">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Visitas a las páginas </h3>
+                  <h3 class="mb-0">Frecuencia de visitas a reportes </h3>
                 </div>
                
               </div>
@@ -143,43 +143,16 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Nombre de la pagina</th>
-                    <th scope="col">Visitas</th>
-                    <th scope="col">Porcentaje</th>
+                    <th scope="col">Cantidad</th>
                   </tr>
                 </thead>
                 <tbody>
+
                   <tr>
                     <th scope="row">
-                      /admin
-                    </th>
-                    <td>
-                      <?php
-                      include("views_admin.php");
-                      echo $views;
-                      ?>
-                    </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('0')}} %
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /perfil
-                    </th>
-                    <td>
-                      <?php
-                      $vperfil = "views_perfil.txt";
-                      $viewsperfil = (int)file_get_contents($vperfil);
-                      echo $viewsperfil;
-                      ?>
-                    </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('1')}} %
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /usuarios
+                      <a class="nav-link" href="{{ url('usuarios') }}" >
+                      Reporte Usuarios
+                      </a>
                     </th>
                     <td>
                       <?php
@@ -188,13 +161,12 @@
                       echo $viewsusuarios;
                       ?>
                     </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('2')}} %
-                    </td>
                   </tr>
                   <tr>
                     <th scope="row">
-                      /estudiantes
+                      <a class="nav-link" href="{{ url('estudiantes') }}" >
+                      Reporte Estudiantes
+                      </a>
                     </th>
                     <td>
                       <?php
@@ -203,13 +175,12 @@
                       echo $viewsestudiantes;
                       ?>
                     </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('3')}} %
-                    </td>
                   </tr>
                   <tr>
                     <th scope="row">
-                      /inscripciones
+                      <a class="nav-link" href="{{ url('inscripciones') }}" >
+                      Reporte Inscripciones
+                      </a>
                     </th>
                     <td>
                       <?php
@@ -218,13 +189,13 @@
                       echo $viewsinscripciones;
                       ?>
                     </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('4')}} %
-                    </td>
+                  
                   </tr>
                   <tr>
                     <th scope="row">
-                      /aprobadosporciclo
+                      <a class="nav-link" href="{{ url('aprobadosporciclo') }}" >
+                      Reporte de Aprobados por Ciclo
+                      </a>
                     </th>
                     <td>
                       <?php
@@ -233,13 +204,13 @@
                       echo $viewsapciclo;
                       ?>
                     </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('5')}} %
-                    </td>
+          
                   </tr>
                   <tr>
                     <th scope="row">
-                      /inscripcionesporciclo
+                      <a class="nav-link" href="{{ url('inscripcionesporciclo') }}" >
+                      Reporte de Inscripciones por Ciclo
+                      </a>
                     </th>
                     <td>
                       <?php
@@ -248,13 +219,13 @@
                       echo $viewsipciclo;
                       ?>
                     </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('6')}} %
-                    </td>
+                 
                   </tr>
                   <tr>
                     <th scope="row">
-                      /retirospormateria
+                      <a class="nav-link" href="{{ url('retirospormateria') }}" >
+                      Reporte de Retiros por Materia
+                      </a>
                     </th>
                     <td>
                       <?php
@@ -262,9 +233,6 @@
                       $viewsretiros = (int)file_get_contents($vretirospormateria);
                       echo $viewsretiros;
                       ?>
-                    </td>
-                    <td>
-                      <i class="ni ni-check-bold text-success mr-3"></i> {{ConsultasController::porcentajes('7')}} %
                     </td>
                   </tr>
                 </tbody>

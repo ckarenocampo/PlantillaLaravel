@@ -55,7 +55,12 @@ class UsuariosController extends Controller
     {
         $usuarios = \App\User::find($id);
         $roles = \App\Role::all();
-        return view('usuarios_edit',compact('usuarios','id','roles'));
+        if($usuarios!=null){
+            return view('usuarios_edit',compact('usuarios','id','roles'));
+        }else{
+            return response()->view('errors.errorsbasic', [], 500);
+        }
+       
     }
 
     public function update(Request $request, $id)

@@ -25,17 +25,15 @@
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6 col-5 text-right">
-              <a href="{{ url('usuarios') }}" class="btn btn-sm btn-neutral">Atrás</a>
-            </div>
+
           </div>
         </div>
       </div>
     </div>
 
     <!-- Page content -->
-    <div class="container-fluid mt--6">
-      <div class="col-xl-8 order-xl-1">
+    <div class="container  align-items-center mt--6">
+      <div class="col-xl-12 order-xl-1">
         @if(Session::has('flash_message_error'))
         <div class="alert alert-danger alert-block ">
           <button type="button" class="close" data-dismiss="alert">x</button>
@@ -67,8 +65,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" value="{{$usuarios['name']}}" type="text" name="name" autofocus>
+                    <input class="form-control" value="{{$usuarios['name']}}" type="text" name="name" id="name" autofocus>
                   </div>
+                </div>
+                <div class="form-group">
+                  <div class="registrationFormAlert form-control-label" id="RevName"></div>
                 </div>
 
                 <div class="form-group">
@@ -77,7 +78,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" value="{{$usuarios['email']}}" type="email" name="email">
+                    <input class="form-control" value="{{$usuarios['email']}}" type="email" name="email" id="email">
                   </div>
                 </div>
 
@@ -132,6 +133,7 @@
                 </div>
                 <div class="text-center">
                   <button type="submit"  id="submitPass" class="btn btn-primary mt-4">Actualizar</button>
+                  <a href="{{ url('usuarios') }}" class="btn btn-danger mt-4">Cancelar</a>
                 </div>
             </form>
           </div>
@@ -151,18 +153,25 @@
   <!-- Argon JS -->
   <script src="{{asset('js/argon.js?v=1.2.0')}}"></script>
 
-  <!-- Check si deseo cambiar password-->
+  
+  <!-- JQuery Match Passwords -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Check si deseo cambiar password-->
+
   <script>
+    
     function myFunction() {
         var checker = document.getElementById('checkPass');
         //var passActual = document.getElementById('password-actual');
         var passNew = document.getElementById('password');
         var passConf = document.getElementById('password-confirmation');
+      
+        
 
         // when unchecked or checked, run the function
         checker.onchange = function(){
           if(this.checked){
-           // passActual.disabled = false;
+          // passActual.disabled = false;
             passNew.disabled = false;
             passConf.disabled = false;
           }
@@ -170,50 +179,108 @@
           //  passActual.disabled = true;
             passNew.disabled = true;
             passConf.disabled = true;
-           // passActual.value = "";
+          // passActual.value = "";
             passNew.value = "";
             passConf.value = "";
+            $("#RevPassword").html("");
+            $("#CheckPasswordMatch").html("");
+          
           }
         }
     }
-    </script>
-  <!-- JQuery Match Passwords -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
+    
     function checkPasswordMatch() {
       var password = $("#password").val();
       var confirmPassword = $("#password-confirmation").val();
-      if (password != confirmPassword){
-        $("#CheckPasswordMatch").html("Contraseñas no coinciden");
-        $("#CheckPasswordMatch").css({'color':'red'});
-        $('#submitPass').attr("disabled", true);
+
+      if(confirmPassword.length > 5){
+
+        if (password != confirmPassword){
+          $("#CheckPasswordMatch").html("Contraseñas no coinciden");
+          $("#CheckPasswordMatch").css({'color':'red'});
+          $('#submitPass').attr("disabled", true);
+        }
+        else{
+          $("#CheckPasswordMatch").html("Contraseñas coinciden");
+          $("#CheckPasswordMatch").css({'color':'green'});
+          $('#submitPass').attr("disabled", false);
+        }
       }
-      else{
-        $("#CheckPasswordMatch").html("Contraseñas coinciden");
-        $("#CheckPasswordMatch").css({'color':'green'});
-        $('#submitPass').attr("disabled", false);
-      }
+        
     }
 
     function checkPasswordMax() {
-  var password = $("#password").val(); 
+      var password = $("#password").val(); 
 
-  if (password.length < 6){
-    $("#RevPassword").html("La contraseña debe contener al menos 6 caracteres");
-    $("#RevPassword").css({'color':'red'});
-    $('#submitPass').attr("disabled", true);
-  }
-  else{
-    $("#RevPassword").html("");
-   // $('#submitPass').attr("disabled", false);
-  }      
-}
+      if (password.length < 6){
+        $("#RevPassword").html("La contraseña debe contener al menos 6 caracteres");
+        $("#RevPassword").css({'color':'red'});
+        $('#submitPass').attr("disabled", true);
+      }
+      else{
+        $("#RevPassword").html("");
+      // $('#submitPass').attr("disabled", false);
+      }      
+    }
+
+    function checkNameMax() {
+      var name = $("#name").val(); 
+
+      if (name.length < 3){
+        $("#RevName").html("El nombre debe contener al menos 3 caracteres");
+        $("#RevName").css({'color':'red'});
+        $('#submitPass').attr("disabled", true);
+      }
+      else{
+        $("#RevName").html("");
+        $('#submitPass').attr("disabled", false);
+      }      
+    }
 
     $(document).ready(function () {
       $("#password-confirmation").keyup(checkPasswordMatch);
       $("#password").keyup(checkPasswordMax);
+      $("#name").keyup(checkNameMax);
+      $("input#name").on({
+        keydown: function() {
+          this.value = this.value.replace(/  +/g, ' ');
+        }
+      });
+      $("input#password").on({
+        keydown: function(e) {
+          if (e.which === 32)
+            return false;
+        },
+        change: function() {
+          this.value = this.value.replace(/\s/g, "");
+        }
+      });
+      $("input#password-confirmation").on({
+        keydown: function(e) {
+          if (e.which === 32)
+            return false;
+        },
+        change: function() {
+          this.value = this.value.replace(/\s/g, "");
+        }
+      });
+      $("input#email").on({
+        keydown: function(e) {
+          if (e.which === 32)
+            return false;
+        },
+        change: function() {
+          this.value = this.value.replace(/\s/g, "");
+        }
+      });
 
     });
+
+
+    
+
+
+
 </script>
 
 

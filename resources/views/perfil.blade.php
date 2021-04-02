@@ -17,11 +17,11 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6">
-              <h6 class="h2 text-white d-inline-block mb-0">Perfil</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Mi Perfil</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Perfil</a></li>
+                  <li class="breadcrumb-item"><a href="#">Mi Perfil</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Contraseña</li>
                 </ol>
               </nav>
@@ -54,8 +54,8 @@
 
             <div class="card-header">
               <div class="row align-items-center">
-                <div class="col-6">
-                  <h3 class="mb-0">Cambiar contraseña </h3>
+                <div class="col-12">
+                  <h3 class="mb-0">Cambiar contraseña de {!! session('name') !!} </h3>
                 </div>
               </div>
             </div>
@@ -127,3 +127,33 @@
   <script src="{{asset('js/custom.js')}}"></script>
 </body>
 </html>
+<script>
+  
+  $("input#password-actual").on({
+  keydown: function(e) {
+    if (e.which === 32)
+      return false;
+  },
+  change: function() {
+    this.value = this.value.replace(/\s/g, "");
+  }
+});
+$("input#password").on({
+  keydown: function(e) {
+    if (e.which === 32)
+      return false;
+  },
+  change: function() {
+    this.value = this.value.replace(/\s/g, "");
+  }
+});
+$("input#password-confirmation").on({
+  keydown: function(e) {
+    if (e.which === 32)
+      return false;
+  },
+  change: function() {
+    this.value = this.value.replace(/\s/g, "");
+  }
+});
+</script>

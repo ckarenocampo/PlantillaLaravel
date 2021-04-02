@@ -40,37 +40,6 @@ class ConsultasController extends Controller
         return $arrayEstudiantesInscritos;
     }
     
-    public static function porcentajes($pos){
-        $total=0;
-        $vistas = array(
-            '0' => (int)file_get_contents("views_admin.txt"),
-            '1' => (int)file_get_contents("views_perfil.txt"),
-            '2' => (int)file_get_contents("views_usuarios.txt"),
-            '3' => (int)file_get_contents("views_estudiantes.txt"),
-            '4' => (int)file_get_contents("views_inscripciones.txt"),
-            '5' => (int)file_get_contents("views_aprobadosporciclo.txt"),
-            '6' => (int)file_get_contents("views_inscripcionesporciclo.txt"),
-            '7' => (int)file_get_contents("views_retirospormateria.txt")
-        );
-        foreach($vistas as $v){
-            $total = $total + $v;
-        }
-        $total + 1;
-
-       $porcentajes = array(
-           '0' =>  $vistas[0] * 100 / $total,
-           '1' =>  $vistas[1] * 100 / $total, 
-           '2' =>  $vistas[2] * 100 / $total, 
-           '3' =>  $vistas[3] * 100 / $total, 
-           '4' =>  $vistas[4] * 100 / $total, 
-           '5' =>  $vistas[5] * 100 / $total, 
-           '6' =>  $vistas[6] * 100 / $total, 
-           '7' =>  $vistas[7] * 100 / $total
-        );
-
-        return number_format($porcentajes[$pos], 2 ) ;
-    }
-
     public function Totales(){
         
         $arrayEstudiantes = $this->datosEstudiantes();
@@ -160,6 +129,36 @@ class ConsultasController extends Controller
 
         return view('/admin')->with('cont', $array);
     }
+    /*
+    public static function porcentajes($pos){
+        $total=0;
+        $vistas = array(
+            '0' => (int)file_get_contents("views_admin.txt"),
+            '1' => (int)file_get_contents("views_perfil.txt"),
+            '2' => (int)file_get_contents("views_usuarios.txt"),
+            '3' => (int)file_get_contents("views_estudiantes.txt"),
+            '4' => (int)file_get_contents("views_inscripciones.txt"),
+            '5' => (int)file_get_contents("views_aprobadosporciclo.txt"),
+            '6' => (int)file_get_contents("views_inscripcionesporciclo.txt"),
+            '7' => (int)file_get_contents("views_retirospormateria.txt")
+        );
+        foreach($vistas as $v){
+            $total = $total + $v;
+        }
+        $total + 1;
 
-   
+       $porcentajes = array(
+           '0' =>  $vistas[0] * 100 / $total,
+           '1' =>  $vistas[1] * 100 / $total, 
+           '2' =>  $vistas[2] * 100 / $total, 
+           '3' =>  $vistas[3] * 100 / $total, 
+           '4' =>  $vistas[4] * 100 / $total, 
+           '5' =>  $vistas[5] * 100 / $total, 
+           '6' =>  $vistas[6] * 100 / $total, 
+           '7' =>  $vistas[7] * 100 / $total
+        );
+
+        return number_format($porcentajes[$pos], 2 ) ;
+    }
+   */
 }

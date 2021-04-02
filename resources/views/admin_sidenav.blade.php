@@ -29,7 +29,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('usuarios') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">USUARIOS</span>
+                  <span class="nav-link-text">Gestión de Usuarios</span>
                 </a>
               </li>
             @endif
@@ -37,35 +37,35 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('estudiantes') }}" >
                 <i class="ni ni-bullet-list-67 text-blue"></i>
-                <span class="nav-link-text">ESTUDIANTES</span>
+                <span class="nav-link-text">Reporte Estudiantes</span>
               </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('inscripciones') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">INSCRIPCIONES</span>
+                  <span class="nav-link-text">Reporte Inscripciones</span>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('aprobadosporciclo') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">Aprobados por ciclo</span>
+                  <span class="nav-link-text">Aprobados por Ciclo</span>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('inscripcionesporciclo') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">Inscripciones por ciclo</span>
+                  <span class="nav-link-text">Inscripciones por Ciclo</span>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('retirospormateria') }}" >
                   <i class="ni ni-bullet-list-67 text-blue"></i>
-                  <span class="nav-link-text">Retiros por materia</span>
+                  <span class="nav-link-text">Retiros por Materia</span>
                 </a>
               </li>
 

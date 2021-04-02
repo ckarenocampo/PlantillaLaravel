@@ -15,7 +15,7 @@
 //Route::get('registro','PagesController@registro');
 
     Route::match(['get','post'],'/','PagesController@login_admin');
-
+    Route::get('logout','PagesController@logout');
     Route::group(['middleware'=>['auth']],function(){
     //Route::get('admin','PagesController@admin');
     Route::match(['get','post'],'perfil','PagesController@perfil');
@@ -32,20 +32,19 @@
     Route::get('retirospormateria','PagesController@retirospormateria');
 
 
-
-
     Route::get('datosEstudiantes', 'ConsultasController@datosEstudiantes');
     Route::get('datosInscripcion', 'ConsultasController@datosInscripcion');
     Route::get('estudiantesInscritos', 'ConsultasController@estudiantesInscritos');
     Route::get('admin', 'ConsultasController@Totales');
     Route::resource('porcentaje', 'ConsultasController@porcentaje');
 
-
-
-
+// 404 Route Handler
+Route::any('{url_param}', function() {
+    abort(404, '404 Error. Page not found!');
+})->where('url_param', '.*');
 });
 
-Route::get('logout','PagesController@logout');
+
 Route::resource('register_admin','RegisterController');
 
 Auth::routes();
