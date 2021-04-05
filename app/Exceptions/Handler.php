@@ -51,6 +51,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof QueryException) {
             return response()->view('errors.errorsbasic', [], 500);
         }
+        //BadMethodCallException
+
         return parent::render($request, $exception);
     }
 }

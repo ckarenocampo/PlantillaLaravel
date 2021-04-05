@@ -25,8 +25,8 @@
 
     Route::get('estudiantes','PagesController@estudiantes');
     Route::get('inscripciones','PagesController@inscripciones');
-    Route::get('inscripcionesporestudiante','PagesController@inscripcionesporestudiante');
-    Route::get('estudiantesporciclo','PagesController@estudiantesporciclo');
+    //Route::get('inscripcionesporestudiante','PagesController@inscripcionesporestudiante');
+    //Route::get('estudiantesporciclo','PagesController@estudiantesporciclo');
     Route::get('aprobadosporciclo','PagesController@aprobadosporciclo');
     Route::get('inscripcionesporciclo','PagesController@inscripcionesporciclo');
     Route::get('retirospormateria','PagesController@retirospormateria');
@@ -43,7 +43,6 @@ Route::any('{url_param}', function() {
     abort(404, '404 Error. Page not found!');
 })->where('url_param', '.*');
 });
-
 
 Route::resource('register_admin','RegisterController');
 

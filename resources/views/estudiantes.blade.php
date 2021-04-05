@@ -103,8 +103,8 @@
 
 function getData(cb_func) {
         $.ajax({
-        //url: "{{url('/datosEstudiantes')}}",
-        url: "estudiantes.txt",
+        url: "{{url('/datosEstudiantes')}}",
+        //url: "estudiantes.txt",
         success: cb_func
         });
     }
