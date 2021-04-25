@@ -44,6 +44,7 @@ class ConsultasController extends Controller
         
         $arrayEstudiantes = $this->datosEstudiantes();
         $arrayEstudiantesInscritos = $this->estudiantesInscritos();
+        $arrayInscritos = $this->datosInscripcion();
 
 
          ///total inscritos
@@ -56,7 +57,7 @@ class ConsultasController extends Controller
              $ciclo = '01';
          }
          $cicloActual = $ciclo . '/' . substr($year, 2, 2);
-
+/*
         function unique_multidim_array($array, $key) {
             $temp_array = array();
             $i = 0;
@@ -74,9 +75,16 @@ class ConsultasController extends Controller
             }
             return $temp_array;
         }
-
-        $resultInscritos = unique_multidim_array($arrayEstudiantesInscritos,'PrimerNombre');
-        $numInscritos = count($resultInscritos);
+*/
+        //$resultInscritos = unique_multidim_array($arrayEstudiantesInscritos,'PrimerNombre');
+        //$resultInscritos = array_unique($arrayInscritos);
+        $arrayTotalInscritos = array();
+        foreach($arrayInscritos['datos'] as $estud){
+            if($estud['Ciclo'] == '01/04'){
+                array_push($arrayTotalInscritos, $estud);
+            }
+        }
+        $numInscritos = count($arrayTotalInscritos);
         
 
         ///total retiros

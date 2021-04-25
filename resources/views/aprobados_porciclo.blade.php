@@ -53,7 +53,7 @@
 
 
             <div id="test" class="table-responsive pt-2 pb-2" style="height:30rem">
-
+              <h2 class="pl-3"> Total resultados <label id="total"> 0 </label> </h2>  
                 <table id="example" class="table table-striped display nowrap" >
               </table>
             </div>
@@ -97,15 +97,26 @@
       <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
 
-      <script src=" https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
+      <!--<script src=" https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>-->
+
+      <!--SEARCH DATATABLES-->
+<!--<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>-->
+<script src="{{(' js/dataTables.searchPanes.js')}}"></script>
+<!--<script src="https://cdn.datatables.net/searchpanes/1.2.1/js/dataTables.searchPanes.min.js"></script>-->
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+ <!-- SEARCH DATATABLES CSS -->
+ <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+ <link href="https://cdn.datatables.net/searchpanes/1.2.1/css/searchPanes.dataTables.min.css" rel="stylesheet">
+ <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet">
+
 
    <script>
 
 function getData(cb_func) {
         $.ajax({
-        url: "{{url('/estudiantesInscritos')}}",
+        url: "{{url('/datosInscripcion')}}",
         //url: "estudiantesinscritos.txt",
-
         success: cb_func
         });
     }
@@ -119,47 +130,39 @@ function getData(cb_func) {
         getData(function( data ) {
             var columns = [];
             data = data;
-            columnNames = Object.keys(data[0]);
+            columnNames = Object.keys(data.datos[0]);
             for (var i in columnNames) {
             columns.push({data: columnNames[i], title: columnNames[i]});
         }
 
-            $('#example').DataTable( {
-                dom: 'Blfrtip',
-                "pageLength": 50,
+        var table =  $('#example').DataTable( {
+          searchPanes: {
+                  viewTotal: true,
+                  columns: [2,1,5]
+
+              },
+              dom: 'PBlfrtip',
+              language: {
+                  searchPanes: {
+                      count: '{total} encontrados',
+                      countFiltered: '{shown} / {total}'
+                  }
+              },
+                "pageLength": 10,
                 buttons:[
                         'excel', 'pdf', 'print'
                         ],
-                data: data,
+                data: data.datos,
 
                 columns: [
-                  { "data": function (data, type, dataToSet) {
-                      return data.PrimerApellido + " " + data.SegundoApellido + " " + data.PrimerNombre + " " + data.SegundoNombre;
-                  }, 'title' : 'Nombre'},
-                  {"data": function (data, type, dataToSet){
-                      var cadena = data.FechaNacimiento ;
-                      cadena = cadena.substr(0,10);
-                      return cadena;
-                    }, 'title' : 'FechaNac'},
-                    { "data": function (data, type, dataToSet) {
-                        var cadena = data.FechaNacimiento ;
-                        cadena = cadena.substr(0,4);
-                        //obtener el year actual
-                        var today = new Date();
-                        var date = today.getFullYear();
-                        return date- cadena;
-                    }, 'title' : 'Edad'},
-                    {'data' : 'CodigoEstudiante' , 'title' : 'CodigoEstudiante'},
-                    {'data' : 'Genero', 'title' : 'Genero'},
-                    {'data' : 'IdCarrera', 'title' : 'Carrera'},
-                    {'data' : 'TipoIngreso', 'title' : 'Tipo Ingreso'},
+                    {'data' : 'IDExpediente', 'title' : 'IDExpediente'},
                     {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
                     {'data' : 'Ciclo' , 'title' : 'Ciclo' },
-                    {'data' : 'Resultado' , 'title' : 'Resultado' },
-                    {'data' : 'Cum', 'title' : 'Cum'}
+                    {'data' : 'Grupo' , 'title' : 'Grupo' },
+                    {'data' : 'Matricula' , 'title' : 'Matricula' },
+                    {'data' : 'Resultado' , 'title' : 'Resultado' }                 
 
                 ],
-                rowsGroup: [0,1,2,3,4,5,6],
                 initComplete: function () {
                     $('#example thead tr').clone(true).appendTo( '#example thead' );
 
@@ -189,6 +192,14 @@ function getData(cb_func) {
             var element = document.getElementById("test");
             element.removeAttribute("style");
             $("#test").busyLoad("hide");
+
+            var total1 = table.rows().count();
+            $("#total").text(total1);
+
+            table.on( 'draw', function () {
+              var total = table.rows( {search:'applied'} ).count()
+              $("#total").text(total);
+            });
 
         });
     });

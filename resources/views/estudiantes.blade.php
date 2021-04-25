@@ -53,7 +53,7 @@
 
 
             <div id="test" class="table-responsive pt-2 pb-2" style="height:30rem">
-
+               <h2 class="pl-3"> Total Estudiantes <label id="total"> 0 </label> </h2>
                 <table id="example" class="table table-striped display nowrap" >
               </table>
             </div>
@@ -97,7 +97,16 @@
      <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
      <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
 
-
+   <!--SEARCH DATATABLES-->
+   <!--<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>-->
+   <script src="{{(' js/dataTables.searchPanes.js')}}"></script>
+    <!--<script src="https://cdn.datatables.net/searchpanes/1.2.1/js/dataTables.searchPanes.min.js"></script>-->
+   <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+   
+    <!-- SEARCH DATATABLES CSS -->
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/searchpanes/1.2.1/css/searchPanes.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet">
 
    <script>
 
@@ -110,7 +119,7 @@ function getData(cb_func) {
     }
 
    $(document).ready(function() {
-
+ 
     $("#test").busyLoad("show", {
         text: "Cargando ...",
         spinner: "accordion",
@@ -122,17 +131,30 @@ function getData(cb_func) {
             columnNames = Object.keys(data.datos[0]);
             for (var i in columnNames) {
             columns.push({data: columnNames[i], title: columnNames[i]});
-        }
+            
+            }
 
-            $('#example').DataTable( {
-                dom: 'Blfrtip',
-                "pageLength": 50,
+            var ttable =  $('#example').DataTable( {
+              searchPanes: {
+                  viewTotal: true,
+                  columns: [3,4,9]
+
+              },
+              dom: 'PBlfrtip',
+              language: {
+                  searchPanes: {
+                      count: '{total} encontrados',
+                      countFiltered: '{shown} / {total}'
+                  }
+              },
+                "pageLength": 10,
                 buttons:[
                          'excel', 'pdf', 'print'
                         ],
                 data: data.datos,
                 columns: 
                 [
+                  {'data' : 'IDExpediente', 'title' : 'IDExpediente'},
                   {'data' : 'CodigoEstudiante', 'title' : 'Codigo'},
                   { "data": function (data, type, dataToSet) {
                       return data.PrimerApellido + " " + data.SegundoApellido + " " + data.PrimerNombre + " " + data.SegundoNombre;
@@ -140,20 +162,20 @@ function getData(cb_func) {
                   {'data' : 'Genero', 'title' : 'Genero' },
                   {'data' : 'IdCarrera', 'title' : 'IDCarrera'},
                   {'data' : 'EstadoCivil', 'title' : 'Estadocivil'},
-                  {'data' : 'PlanVersion', 'title' : 'PlanVersion'},
-                  {"data": function (data, type, dataToSet){
+                  //{'data' : 'PlanVersion', 'title' : 'PlanVersion'},
+                 /*{"data": function (data, type, dataToSet){
                       var cadena = data.FechaIngreso ;
                       cadena = cadena.substr(0,10);
                       return cadena;
-                    }, 'title' : 'FechaIngreso'},
+                    }, 'title' : 'FechaIngreso'},*/
                   {'data' : 'PeriodoIngreso', 'title' : 'PeriodoIngreso'},
                   {'data' : 'TipoIngreso', 'title' : 'TipoIngreso'},
                   {'data' : 'Cum' , 'title' : 'Cum' },
-                  {"data": function (data, type, dataToSet){
+                  /*{"data": function (data, type, dataToSet){
                       var cadena = data.FechaNacimiento ;
                       cadena = cadena.substr(0,10);
                       return cadena;
-                    }, 'title' : 'FechaNac'},
+                    }, 'title' : 'FechaNac'},*/
                     { "data": function (data, type, dataToSet) {
                         var cadena = data.FechaNacimiento ;
                         cadena = cadena.substr(0,4);
@@ -186,14 +208,25 @@ function getData(cb_func) {
                             select.append( '<option value="'+d+'">'+d+'</option>' );
                         });
                     });
-                }
+                  }
 
             });
+
             var element = document.getElementById("test");
             element.removeAttribute("style");
             $("#test").busyLoad("hide");
 
+            var total1 = ttable.rows().count();
+            $("#total").text(total1);
+
+            ttable.on( 'draw', function () {
+              var total = ttable.rows( {search:'applied'} ).count()
+              $("#total").text(total);
+            });
+
         });
+
+
     });
     </script>
   </body>

@@ -100,7 +100,7 @@
 
 function getData(cb_func) {
         $.ajax({
-        url: "{{url('/estudiantesInscritos')}}",
+        url: "{{url('/datosInscripcion')}}",
 
 
         success: cb_func
@@ -123,7 +123,7 @@ function getData(cb_func) {
 
             $('#example').DataTable( {
                 dom: 'Blfrtip',
-                "pageLength": 50,
+                "pageLength": 10,
                 buttons:[
                         'excel', 'pdf', 'print'
                         ],

@@ -58,7 +58,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0 ">Inscritos Ciclo 02/04</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0 ">Inscritos Ciclo 01/04</h5>
                       <span id="countInscritos" class="h2 font-weight-bold mb-0">{{$cont['inscritos']}}</span>
                     </div>
                     <div class="col-auto">

@@ -53,8 +53,8 @@
 
 
             <div  id="test" class="table-responsive pt-2 pb-2" style="height:30rem">
-                <table id="example" class="table table-striped display nowrap" >
-
+              <h2 class="pl-3"> Total Inscripciones <label id="total"> 0 </label> </h2>  
+              <table id="example" class="table table-striped display nowrap" >
               </table>
             </div>
           </div>
@@ -98,6 +98,17 @@
      <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
      <link href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css" rel="stylesheet">
 
+<!--SEARCH DATATABLES-->
+<!--<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>-->
+<script src="{{(' js/dataTables.searchPanes.js')}}"></script>
+<!--<script src="https://cdn.datatables.net/searchpanes/1.2.1/js/dataTables.searchPanes.min.js"></script>-->
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+ <!-- SEARCH DATATABLES CSS -->
+ <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+ <link href="https://cdn.datatables.net/searchpanes/1.2.1/css/searchPanes.dataTables.min.css" rel="stylesheet">
+ <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet">
+
 
    <script>
 
@@ -125,35 +136,42 @@
             }
 
 
-            $('#example').DataTable( {
-                'processing': true,
-                    'language': {
-                        'loadingRecords': '&nbsp;',
-                        'processing': '<div class="spinner"></div>'
-                    } ,
-                dom: 'Blfrtip',
-                "pageLength": 50,
+            var table = $('#example').DataTable( {
+                
+              searchPanes: {
+                  viewTotal: true,
+                  columns: [0,5,1]
+
+              },
+              dom: 'PBlfrtip',
+              language: {
+                  searchPanes: {
+                      count: '{total} encontrados',
+                      countFiltered: '{shown} / {total}'
+                  }
+              },
+                "pageLength": 10,
                 buttons:[
                         'excel', 'pdf', 'print',
                         ],
             data: data.datos,
-            columns: columns,
-
+            columns: [
+                    {'data' : 'IDExpediente', 'title' : 'IDExpediente'},
+                    {'data' : 'NombreMateria', 'title' : 'NombreMateria'},
+                    {'data' : 'NombreDocente' , 'title' : 'NombreDocente'},
+                    {'data' : 'Ciclo' , 'title' : 'Ciclo' },
+                    {'data' : 'Adicionada' , 'title' : 'Adicionada'},
+                    {'data' : 'Grupo' , 'title' : 'Grupo'},
+                    {'data' : 'Dia' , 'title' : 'Dia'},
+                    {'data' : 'Turno' , 'title' : 'Turno'},
+                    {'data' : 'Horario' , 'title' : 'Horario'}
+                    
+                ],
+          
 
                 initComplete: function () {
-                //table = $('#example').DataTable( );
-                //var firstHeaderRow = $(table.table().header() );
-                //var firstHeaderRow = $('table').find('thead').eq(0);
-                //  firstHeaderRow.clone().insertBefore( firstHeaderRow );
-
                     $('#example thead tr').clone(true).appendTo( '#example thead' );
-                /*       $('#example thead tr:eq(1) th').each( function (i) {
-                            $(this).html( '<select><option value=""></option></select>' );
-
-
-                        } );
-    */
-
+          
                     this.api().columns().every( function () {
 
                         var column = this;
@@ -181,6 +199,14 @@
             var element = document.getElementById("test");
             element.removeAttribute("style");
             $("#test").busyLoad("hide");
+
+            var total1 = table.rows().count();
+            $("#total").text(total1);
+
+            table.on( 'draw', function () {
+              var total = table.rows( {search:'applied'} ).count()
+              $("#total").text(total);
+            });
 
         });
 

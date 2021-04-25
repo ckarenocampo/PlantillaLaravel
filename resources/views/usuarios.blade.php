@@ -75,12 +75,12 @@
                       <td>{{$usuarios['id']}}</td>
                       <td>{{$usuarios['name']}}</td>
                       <td>{{$usuarios['email']}}</td>
-                      <td><a href="{{url('/usuarios/'. $usuarios['id'].'/edit')}}" class="btn btn-warning">Edit</a></td>
+                      <td><a href="{{url('/usuarios/'. $usuarios['id'].'/edit')}}" class="btn btn-warning">Editar</a></td>
                       <td>
                          <form action="{{action('UsuariosController@destroy', $usuarios['id'])}}" method="post">
                           @csrf
                           <input name="_method" type="hidden" value="DELETE">
-                          <button class="btn btn-danger" type="submit" onclick="return confirm ('Desea borrar este usuario?')">Delete</button>
+                          <button class="btn btn-danger" type="submit" onclick="return confirm ('Desea borrar este usuario?')">Eliminar</button>
                         </form>
                       </td>
                     </tr>

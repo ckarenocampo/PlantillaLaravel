@@ -162,11 +162,8 @@
     
     function myFunction() {
         var checker = document.getElementById('checkPass');
-        //var passActual = document.getElementById('password-actual');
         var passNew = document.getElementById('password');
         var passConf = document.getElementById('password-confirmation');
-      
-        
 
         // when unchecked or checked, run the function
         checker.onchange = function(){
